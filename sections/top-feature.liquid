@@ -1,0 +1,91 @@
+{%- assign blog = blogs[section.settings.project_list] -%}
+<section class="p-feature">
+         
+         <div class="p-feature__inner">
+           <div class="p-feature__bg">
+            {{ 'feature-bg.png' | file_img_url : 'master' | img_tag: 'feature-bg.png','resp-none' }}
+            {{ 'feature-bg.png' | file_img_url : 'master' | img_tag: 'feature_bg-resp.png','resp-block' }}             
+           </div>
+          <div class="p-feature__vegitable1">
+            {{ 'feature-vegitable1.png' | file_img_url : 'master' | img_tag: 'feature-vegitable1.png','fallin-after' }}
+           </div>
+           <div class="p-feature__vegitable2">
+             {{ 'feature-vegitable2.png' | file_img_url : 'master' | img_tag: 'feature-vegitable2','fallin-after' }}
+           </div>
+           <div class="p-feature__glass">
+             {{ 'feature-glass.png' | file_img_url : 'master' | img_tag: 'feature-glass.png','fallin-after' }}
+           </div>
+           <div class="p-feature__mistletoe">
+             {{ 'feature-mistletoe.png' | file_img_url : 'master' | img_tag: 'feature-mistletoe.png','sway-s-after' }}
+           </div>
+          <div class="p-feature__top fadeY-after">
+            <p class="p-feature__ttl c-ttl">特　集</p>
+            {{ 'feature-underline.png' | file_img_url : 'master' | img_tag: 'feature-underline.png' }}
+          </div>
+          <div class="p-feature__mdl fade-after">
+            {% if section.settings.feature != blank %}
+            <p class="p-feature__description c-description">{{ section.settings.feature }}</p>
+            {% endif %}　
+          </div>
+          <div class="p-feature__btm barrage-p">
+            <ul class="p-feature__lists">
+               {% for article in blog.articles limit: 3 %}
+		       {%  assign blogcount  = blogcount  | plus : 1 %}
+                  <li class="p-feature__list barrage-c">
+                    {% if article.metafields.custom._nolink != true %}<a href="{{ article.url }}">{% endif %}	
+                    {% if article.image != blank %}
+					<img src="{{ article.image.src | image_url: width:500 }}" alt="">
+                    {% else %}
+                    <img  src="{{ 'noimage.png' | file_url }}">
+                    {% endif %}
+                    
+                    <div class="p-feature__variety">
+                      <p class="p-feature__tag">
+                        {% for tag in article.tags %}
+						    {{ tag }}
+						{% endfor %}
+                      </p>
+                      <span>|</span>
+                      <p class="p-feature__date">{{ article.created_at | date: "%y. %m. %d " }}</p>
+                    </div>
+                    <p class="p-feature__description c-description">{{ article.title | truncate: 40  }}</p>
+                    {% if article.metafields.custom._nolink != true %}</a>{% endif %}
+                  </li>
+              {% endfor %}
+            </ul>
+            <div class="p-feature__btn fade-after">
+              <a href="{{ blog.url }}" class="c-btn">
+                <span>特集一覧を見る</span>
+              </a>
+            </div>
+          </div>
+         </div>
+       </section>
+
+{% schema %}
+  {
+    "name": "feature",
+    "settings": [
+		{
+          "type": "text",
+          "id": "feature",
+          "label": "特集 説明文"
+      	},{
+		  "type": "blog",
+          "id": "project_list",
+		  "label": "表示するブログ記事を選択"
+		}
+	],
+	"presets": [
+      {
+        "name": "Top-Feature"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

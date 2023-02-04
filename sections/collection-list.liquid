@@ -1,0 +1,81 @@
+<div class="relative large-row container" data-section-id="{{ section.id }}" data-section-type="collection-list">
+  <div class="page-width">
+    {% if section.settings.title != blank %}
+      <div class="large-row">
+        <h2 class="text-center {% if section.settings.enlarge_title %}giant-title{% else %}large-title{% endif%}">{{ section.settings.title | escape }}</h2>
+      </div>
+    {% endif %}
+
+    <div class="grid-flex">
+      {%- liquid
+        assign grid_class = 'one-quarter small-down--one-half'
+        if section.settings.grid == 2
+          assign grid_class = 'one-half small-down--one-half'
+        elsif section.settings.grid == 3
+          assign grid_class = 'one-third small-down--one-half'
+        elsif section.settings.grid == 5
+          assign grid_class = 'one-fifth small-down--one-half'
+        endif
+      -%}
+      {%- for collection in section.settings.collection_list -%}
+        {% render 'collection-block', collection: collection, extra_attrs: block.shopify_attributes, grid_class: grid_class, image: collection.featured_image %}
+      {%- else -%}
+        {%- for i in (1..section.settings.grid) -%}
+          <div class="product-block grid-flex__item {{ grid_class }}" {{ block.shopify_attributes }}>
+            <div class="hover-images global-border-radius">
+              <span class="product-block__image image-one">
+                {% capture placeholder_type %}collection-{{ forloop.index0 | modulo: 4 | plus: 1 }}{% endcapture %}
+                {{ placeholder_type | placeholder_svg_tag: 'placeholder-svg' }}
+              </span>
+            </div>
+            <div class="product-block__title">
+              <a>{{ 'homepage.onboarding.collection_title' | t }}</a>
+            </div>
+          </div>
+        {%- endfor -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Collection list",
+    "tag": "section",
+    "class": "section-collection-list",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Collection list"
+      },
+      {
+        "type": "checkbox",
+        "id": "enlarge_title",
+        "label": "Enlarge heading",
+        "default": false
+      },
+      {
+        "type": "collection_list",
+        "id": "collection_list",
+        "label": "Collections",
+        "limit": 20
+      },
+      {
+        "type": "range",
+        "id": "grid",
+        "label": "Collections per row",
+        "min": 2,
+        "max": 5,
+        "step": 1,
+        "default": 4
+      }
+    ],
+    "presets": [
+      {
+        "name": "Collection list"
+      }
+    ]
+  }
+{% endschema %}

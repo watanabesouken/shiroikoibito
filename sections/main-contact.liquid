@@ -1,0 +1,250 @@
+<div class="container contact-page__container">
+
+  {% if section.settings.use_columns %}
+    <div class="page-width row">
+      <div class="grid">
+        <div class="grid__item one-half small-down--one-whole">
+  {% else %}
+    <div class="large-row reading-width">
+  {% endif %}
+
+    <div class="rte {% unless section.settings.use_columns %} rte--expanded-images {% endunless%} clearfix">
+      {{ page.content }}
+    </div>
+
+  </div>
+
+  {% if section.settings.use_columns %}
+    <div class="grid__item one-half small-down--one-whole">
+    {% else %}
+    <div class="row reading-width">
+  {% endif %}
+
+    {% form 'contact' %}
+      {% if form.posted_successfully? %}
+        <p class="form-success">
+          {{ 'contact.form.post_success' | t }}
+        </p>
+      {% endif %}
+
+      {{ form.errors | default_errors }}
+
+      {% if request.design_mode %}
+      {% liquid
+        assign email_exists = false
+        for block in section.blocks
+          if block.type == 'email_input'
+            assign email_exists = true
+          endif
+        endfor %}
+        {% if email_exists == false %}
+          <div class="error-message">You must include the Email input block for the form to work correctly.</div>
+        {% endif %}
+      {% endif %}
+
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'name_input' %}
+            <div class="input-wrapper form-row">
+              <label for="ContactFormName">{{ 'contact.form.name' | t }}</label>
+              <input type="text"
+                name="contact[name]"
+                id="ContactFormName"
+                value="{% if form[name] %}{{ form[name] }}{% elsif customer %}{{ customer.name }}{% endif %}"
+                required>
+            </div>
+
+          {% when 'email_input' %}
+            <div class="input-wrapper form-row">
+              <label for="ContactFormEmail">{{ 'contact.form.email' | t }}</label>
+              <input type="email"
+                name="contact[email]"
+                id="ContactFormEmail"
+                value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+                spellcheck="false"
+                autocomplete="off"
+                autocapitalize="off"
+                required>
+            </div>
+
+          {% when 'phone_input' %}
+            <div class="input-wrapper form-row">
+              <label for="ContactFormPhone">{{ 'contact.form.phone' | t }}</label>
+              <input type="tel"
+                name="contact[phone]"
+                id="ContactFormPhone"
+                {% if block.settings.required %}required{% endif %}
+                value="{% if form[phone] %}{{ form[phone] }}{% elsif customer %}{{ customer.phone }}{% endif %}"
+                pattern="[0-9\-]*">
+              </div>
+
+          {% when 'message_input' %}
+            <div class="input-wrapper form-row">
+              <label for="ContactFormMessage">{{ 'contact.form.message' | t }}</label>
+              <textarea rows="10" name="contact[body]" id="ContactFormMessage" required>{% if form.body %}{{ form.body }}{% endif %}</textarea>
+            </div>
+
+          {% when 'text' %}
+            <div class="rte">{{ block.settings.text }}</div>
+
+          {% when 'custom_input' %}
+            {% unless block.settings.title == blank %}
+              <div class="input-wrapper form-row">
+                {%- assign title_handle = block.settings.title | handle -%}
+                <label for="contact_{{ title_handle }}">{{ block.settings.title | escape }}</label>
+                {% if block.settings.type == 'textarea' %}
+                  <textarea
+                    id="contact_{{ title_handle }}"
+                    name="contact[{{ title_handle }}]"
+                    {% if block.settings.required %}required{% endif %}>
+                    {{- form[title_handle] -}}
+                  </textarea>
+                {% else %}
+                  <input
+                    type="{{ block.settings.type }}"
+                    id="contact_{{ title_handle }}"
+                    name="contact[{{ title_handle }}]"
+                    value="{{ form[title_handle] }}"
+                    {% if block.settings.required %}required{% endif %}/>
+                {% endif %}
+              </div>
+            {% endunless %}
+        {% endcase %}
+      {% endfor %}
+
+      <div class="row">
+        <input type="submit" class=" contact-form__submit btn" value="{{ 'contact.form.send' | t }}">
+      </div>
+
+    {% endform %}
+
+  </div>
+
+  {% if section.settings.use_columns %}
+    </div>
+  </div>
+  {% endif %}
+</div>
+</div>
+
+{% schema %}
+  {
+    "name": "Contact page",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "An email input is required for the form to work."
+      },
+      {
+        "type": "checkbox",
+        "id": "show_title",
+        "label": "Show page title",
+        "default": true
+      },
+      {
+        "type": "select",
+        "id": "title_alignment",
+        "label": "Title alignment",
+        "default": "left",
+        "options": [
+          { "value": "left", "label": "Left" },
+          { "value": "center", "label": "Center" },
+          { "value": "right", "label": "Right" }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "id": "use_columns",
+        "label": "Enable column layout for content and form",
+        "default": true
+      }
+    ],
+    "blocks": [
+      {
+        "type": "name_input",
+        "name": "Name input",
+        "limit": 1
+      },
+      {
+        "type": "email_input",
+        "name": "Email input",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "paragraph",
+            "content": "This block is required for the form to send."
+          }
+        ]
+      },
+      {
+        "type": "message_input",
+        "name": "Message input",
+        "limit": 1
+      },
+      {
+        "type": "phone_input",
+        "name": "Phone input",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "checkbox",
+            "id": "required",
+            "label": "Required",
+            "default": false
+          }
+        ]
+      },
+      {
+        "type": "custom_input",
+        "name": "Custom input",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Label",
+            "default": "Custom input",
+            "info": "The custom input will not appear on the form without a label."
+          },
+          {
+            "type": "select",
+            "id": "type",
+            "label": "Type",
+            "default": "text",
+            "options": [
+              {
+                "label": "Text",
+                "value": "text"
+              },
+              {
+                "label": "Number",
+                "value": "number"
+              },
+              {
+                "label": "Text area",
+                "value": "textarea"
+              }
+            ]
+          },
+          {
+            "type": "checkbox",
+            "id": "required",
+            "label": "Required",
+            "default": false
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "name": "Text",
+        "settings": [
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text",
+            "default": "<p>Text content</p>"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

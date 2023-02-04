@@ -1,0 +1,30 @@
+<section class="p-feature p-collection-feature p-partner">         
+  {% render 'breadcrumbs-custom', show_next_prev: true %}
+  <div class="p-feature__inner">
+    <div class="p-feature__bg p-news-collection__bg">
+      {{ 'partners-bg.png' | file_img_url : 'master' | img_tag: 'partners-bg'}}     
+    </div>
+	<div class="p-farm__carrots">
+        {{ 'farm-carrots.png' | file_img_url : 'master' | img_tag: 'farm-carrots', 'fallin'  }}        
+    </div>
+    <div class="p-farm__koibito">
+        {{ 'farm-koibito.png' | file_img_url : 'master' | img_tag: 'farm-koibito', 'fallin'  }}        
+    </div>
+    <div class="p-feature__top">
+      <p class="p-feature__ttl c-ttl">パートナーズ<br class="p-farm-spOnly"><span class="p-farm-spOnly__small">(参画事業者)</span></p>
+      {{ 'partners-title.png' | file_img_url : 'master' | img_tag: 'partners-title' }}
+    </div>
+  </div>
+</section>
+{% schema %}
+  {
+    "name": "partners-head",
+    "settings": []
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

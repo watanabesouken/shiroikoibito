@@ -1,0 +1,89 @@
+<section class="p-products">
+  <div class="p-products__inner">
+    <div class="p-products__bg">
+      {{ 'products-bg.png' | file_img_url : 'master' | img_tag: 'products-bg','resp-none' }}      
+      {{ 'products-bg_resp.png' | file_img_url : 'master' | img_tag: 'products-bg','resp-block' }}            
+      {{ 'project-bg_spbtm.png' | file_img_url : 'master' | img_tag: 'project-bg_spbtm','sp-block' }}
+    </div>
+
+    <div class="p-products__rollcake">
+            {{ 'product-rollcake.png' | file_img_url : 'master' | img_tag: 'product-rollcake','fallin-after' }}      
+    </div>
+
+    <div class="p-products__cheesecake">
+            {{ 'product-cheesecake.png' | file_img_url : 'master' | img_tag: 'product-cheesecake' ,'fade-after'}}      
+    </div>
+
+    <div class="p-products__mistletoe">
+            {{ 'product-mistletoe.png' | file_img_url : 'master' | img_tag: 'product-mistletoe' ,'sway-s-after'}}      
+    </div>
+
+    <div class="p-products__people1">
+            {{ 'product-people1.png' | file_img_url : 'master' | img_tag: 'product-people1','fallin-after' }}      
+    </div>
+
+    <div class="p-products__human2">
+            {{ 'product-human2.png' | file_img_url : 'master' | img_tag: 'product-human2','fallin-after' }}      
+    </div>
+
+    <div class="p-products__human3">
+            {{ 'product-human3.png' | file_img_url : 'master' | img_tag: 'product-human3','fallin-after' }}      
+    </div>
+    <div class="p-products__top fadeY-after">
+      <p class="p-products__ttl c-ttl en">PRODUCTS</p>
+      {{ 'project-underline.png' | file_img_url : 'master' | img_tag: 'project-underline.png' }}
+    </div>
+    <div class="p-products__mdl fadeY-after">
+      {% if section.settings.products != blank %}
+        <p class="p-products__description c-description">{{ section.settings.products }}</p>
+        {% endif %}
+    </div>
+    <div class="p-producsts__btm barrage-p">
+      <ul class="p-products__lists">
+        <li class="p-products__list barrage-c">
+          {{ 'product.png' | file_img_url : 'master' | img_tag: 'product.png' }}
+          <p class="p-products__name">ISHIYA (石屋製菓) 白い恋人 54枚入(ホワイト36枚・ブラック18枚)</p>
+          <p class="p-products__price">2,000<span class="p-products__yen">円(税込)</span></p>
+        </li>
+        <li class="p-products__list barrage-c">
+          {{ 'product.png' | file_img_url : 'master' | img_tag: 'product.png' }}
+          <p class="p-products__name">ISHIYA (石屋製菓) 白い恋人 54枚入(ホワイト36枚・ブラック18枚)</p>
+          <p class="p-products__price">2,000<span class="p-products__yen">円(税込)</span></p>
+        </li>
+        <li class="p-products__list barrage-c">
+          {{ 'product.png' | file_img_url : 'master' | img_tag: 'product.png' }}
+          <p class="p-products__name">ISHIYA (石屋製菓) 白い恋人 54枚入(ホワイト36枚・ブラック18枚)</p>
+          <p class="p-products__price">2,000<span class="p-products__yen">円(税込)</span></p>
+        </li>
+        <li class="p-products__list barrage-c">
+          {{ 'product.png' | file_img_url : 'master' | img_tag: 'product.png' }}
+          <p class="p-products__name">ISHIYA (石屋製菓) 白い恋人 54枚入(ホワイト36枚・ブラック18枚)</p>
+          <p class="p-products__price">2,000<span class="p-products__yen">円(税込)</span></p>
+        </li>
+      </ul>
+      <div class="p-products__btn fade-after">
+        <a href="#" class="c-btn">
+          <span>もっと商品を見る</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+{% schema %}
+  {
+    "name": "products",
+    "settings": [
+		{
+          "type": "text",
+          "id": "products",
+          "label": "PRODUCTS 説明文"
+      	}
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

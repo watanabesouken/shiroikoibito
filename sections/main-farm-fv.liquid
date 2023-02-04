@@ -1,0 +1,43 @@
+
+
+<div class="p-farm-kv">
+       <div class="p-farm-kv__inner">
+           {% render 'breadcrumbs-custom' %}
+         <div class="p-farm-kv__top">
+           <p class="p-farm-kv__title--ja fadeY">HOKKAIDO <br class="p-farm-spOnly"> FARM STORYについて</p>
+            {{ 'p-farm-kv-underline.png' | file_img_url : 'master' | img_tag: 'p-farm-kv-underline' , 'p-farm-pcOnly fadeY'}}
+            {{ 'p-farm-kv-underlinesp.png' | file_img_url : 'master' | img_tag: 'p-farm-kv-underlinesp', 'p-farm-spOnly fadeY'}}
+         </div>
+         <div class="p-farm-kv__btm">
+              {{ 'kv-student1.png' | file_img_url : 'master' | img_tag: 'p-farm-kv-student1' , 'p-farm-kv-student1 fallin  fallin-delay1' }}
+              {{ 'farm-student3.png' | file_img_url : 'master' | img_tag: 'p-farm-kv-student2' , 'p-farm-kv-student2 fallin fallin-delay1' }}
+             {{ 'kv-human3.png' | file_img_url : 'master' | img_tag: 'p-farm-kv-human1','p-farm-kv-human1 fallin fallin-delay1'}}
+             {{ 'kv-human4.png' | file_img_url : 'master' | img_tag: 'p-farm-kv-human2','p-farm-kv-human2 fallin fallin-delay1'}}
+             {{ 'kv-mistletoe.png' | file_img_url : 'master' | img_tag: 'p-farm-kv-mistletoe','p-farm-kv-mistletoe sway'}}
+             {{ 'logo.png' | file_img_url : 'master' | img_tag: 'p-farm-kv-logo','p-farm-kv-logo fadeY'}}
+         
+           <p class="p-farm-kv__title--en fadeY">HOKKAIDO<br class="p-farm-spOnly"> FARM STORY</p>
+           <p class="p-kv__subtitle p-farm-kv__subtitle fade">次の<span class="p-kv__green">150</span>年へ、北海道をひとつに</p>
+         </div>
+       </div>
+     </div>
+
+{% schema %}
+  {
+    "name": "farm-fv",
+    "settings": [
+		
+	],
+	"presets": [
+      {
+        "name": "farm-fv"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

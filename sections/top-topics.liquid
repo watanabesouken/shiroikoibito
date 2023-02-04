@@ -1,0 +1,246 @@
+
+
+<section class="p-topics">
+          <div class="p-topics__inner barrage-p">
+            <div class="p-topics__flower1">
+              {{ 'topics-flower1.png' | file_img_url : 'master' | img_tag: 'topics-flower1','sway-s-after' }}
+             </div>
+             <div class="p-topics__flower2">
+              {{ 'topics-flower2.png' | file_img_url : 'master' | img_tag: 'topics-flower2','sway-s-after' }}               
+             </div>
+             <div class="p-topics__flower3">
+              {{ 'topics-flower3.png' | file_img_url : 'master' | img_tag: 'topics-flower3','sway-s-after' }}               
+             </div>
+
+             <div class="p-topics__mistletoe">
+              {{ 'topics-mistletoe.png' | file_img_url : 'master' | img_tag: 'topics-mistletoe','sway-s-after' }}               
+             </div>
+
+             <div class="p-topics__cabbage">
+              {{ 'topics-cabbage.png' | file_img_url : 'master' | img_tag: 'topics-cabbage','fallin-after' }}               
+             </div>
+
+             <div class="p-topics__bread">
+              {{ 'topics-bread.png' | file_img_url : 'master' | img_tag: 'topics-bread','fallin-after' }}               
+             </div>
+
+             <div class="p-topics__bear">
+              {{ 'feature-bear.png' | file_img_url : 'master' | img_tag: 'feature-bear','sway-after' }}               
+             </div>
+            <div class="p-topics__top fadeY-after">
+              <p class="p-topics__ttl c-ttl en">TOPICS</p>
+              {{ 'topics-underline.png' | file_img_url : 'master' | img_tag: 'topics-underline' }}
+            </div>
+            <div class="p-topics__mdl fadeY-after">
+              <p class="p-topics__description c-description">
+              {% if section.settings.topics != blank %}
+              <p class="p-topics__description c-description">{{ section.settings.topics }}</p>
+              {% endif %}
+              </p>
+            </div>
+            <div class="p-topics__navigation">
+              <ul class="p-topics__navigation--lists">
+                <li class="p-topics__navigation--list barrage-c-fade">
+                  <a class="p-topics__navigation--green" tabindex="-1">PROJECT</a>
+                </li>
+                
+<!--   商品非表示 -->
+<!--                 <li class="p-topics__navigation--list barrage-c-fade">
+                  <a class="p-topics__navigation--blue" href="#">PRODUCT</a>
+                </li> -->
+                
+                <li class="p-topics__navigation--list barrage-c-fade">
+                  <a class="p-topics__navigation--pink" tabindex="-1">特　集</a>
+                </li>
+                
+<!-- オンライン講座非表示      -->
+<!--                 <li class="p-topics__navigation--list barrage-c-fade">
+                  <a class="p-topics__navigation--yellow" href="#">オンライン<br class="sp-block">講座</a>
+                </li> -->
+                
+              </ul>
+            </div>
+            <div class="p-topics__btm fade-after-p">
+              <ul class="p-topics__lists topics-default is-active">
+                {% for article in blogs['project'].articles %}
+                {% if article.handle == section.settings.project %}
+                <li class="p-topics__list fade-after-c">
+                  {% if article.metafields.custom._nolink != true %}<a href="{{ article.url }}">{% endif %}
+                    <div class="p-topics__tag p-topics__tag--green">
+                      <p class="p-topics__tag--name">PROJECT</p>
+                    </div>
+                    {% if article.image != blank %}
+                    <img class="p-topics__img" src="{{ article.image.src | image_url: width:500 }}" alt="">
+                    {% else %}
+                    <img class="p-topics__img"  src="{{ 'noimage.png' | file_url }}" alt="">
+                    {% endif %}
+                    <div class="p-topics__items p-topics__items--green">
+                      <p class="p-topics__item--name resp-none">
+                        {{ article.title | truncate: 36 }}
+                      </p>
+                      <p class="p-topics__item--name resp-block">
+                        {{ article.title | truncate: 32 }}
+                      </p>
+                      <p class="p-topics__item--description c-description resp-none">
+                        {{ article.excerpt | truncate: 37 }}
+                      </p>
+                      <p class="p-topics__item--description c-description resp-block">
+                        {{ article.excerpt | truncate: 32 }}
+                      </p>
+                    </div>
+                  {% if article.metafields.custom._nolink != true %}</a>{% endif %}
+                </li>
+                {% endif %}
+                {% endfor %}
+
+				{% for article in blogs['feature'].articles %}
+                {% if article.handle == section.settings.feature %}
+                <li class="p-topics__list fade-after-c">
+                  {% if article.metafields.custom._nolink != true %}<a href="{{ article.url }}">{% endif %}
+                    <div class="p-topics__tag p-topics__tag--pink">
+                      <p class="p-topics__tag--name">特集</p>
+                    </div>
+                    {% if article.image != blank %}
+                    <img class="p-topics__img" src="{{ article.image.src | image_url: width:500 }}" alt="" style="border-color:#F8C6BD">
+                    {% else %}
+                    <img class="p-topics__img"  src="{{ 'noimage.png' | file_url }}" alt="" style="border-color:#F8C6BD">
+                    {% endif %}
+                    <div class="p-topics__items p-topics__items--pink">
+                      <p class="p-topics__item--name resp-none">
+                        {{ article.title | truncate: 36 }}
+                      </p>
+                      <p class="p-topics__item--name resp-block">
+                        {{ article.title | truncate: 32 }}
+                      </p>
+                      <p class="p-topics__item--description c-description resp-none">
+                        {{ article.excerpt | truncate: 37}}
+                      </p>
+                      <p class="p-topics__item--description c-description resp-block">
+                        {{ article.excerpt | truncate: 32}}
+                      </p>
+                    </div>
+                  {% if article.metafields.custom._nolink != true %}</a>{% endif %}
+                </li>
+                {% endif %}
+                {% endfor %}
+              </ul>
+              
+              
+              <ul class="p-topics__lists topics-project">
+                {% for article in blogs['project'].articles %}
+                {% if article.handle == section.settings.project  or article.handle == section.settings.project2 or article.handle == section.settings.project3 or article.handle == section.settings.project4 %}
+                <li class="p-topics__list fade-after-c">
+                  {% if article.metafields.custom._nolink != true %}<a href="{{ article.url }}">{% endif %}
+                    <div class="p-topics__tag p-topics__tag--green">
+                      <p class="p-topics__tag--name">PROJECT</p>
+                    </div>
+                    {% if article.image != blank %}
+                    <img class="p-topics__img" src="{{ article.image.src | image_url: width:500 }}" alt="">
+                    {% else %}
+                    <img class="p-topics__img"  src="{{ 'noimage.png' | file_url }}" alt="">
+                    {% endif %}
+                    <div class="p-topics__items p-topics__items--green">
+                      <p class="p-topics__item--name resp-none">
+                        {{ article.title | truncate: 36 }}
+                      </p>
+                      <p class="p-topics__item--name resp-block">
+                        {{ article.title | truncate: 32 }}
+                      </p>
+                      <p class="p-topics__item--description c-description resp-none">
+                        {{ article.excerpt | truncate: 37 }}
+                      </p>
+                      <p class="p-topics__item--description c-description resp-block">
+                        {{ article.excerpt | truncate: 32 }}
+                      </p>
+                    </div>
+                  {% if article.metafields.custom._nolink != true %}</a>{% endif %}
+                </li>
+                {% endif %}
+                {% endfor %}
+              </ul>
+              <ul class="p-topics__lists topics-feature">
+                {% for article in blogs['feature'].articles %}
+                {% if article.handle == section.settings.feature or article.handle == section.settings.feature2 or article.handle == section.settings.feature3 or article.handle == section.settings.feature4 %}
+                <li class="p-topics__list fade-after-c">
+                  {% if article.metafields.custom._nolink != true %}<a href="{{ article.url }}">{% endif %}
+                    <div class="p-topics__tag p-topics__tag--pink">
+                      <p class="p-topics__tag--name">特集</p>
+                    </div>
+                    {% if article.image != blank %}
+                    <img class="p-topics__img" src="{{ article.image.src | image_url: width:500 }}" alt="" style="border-color:#F8C6BD">
+                    {% else %}
+                    <img class="p-topics__img"  src="{{ 'noimage.png' | file_url }}" alt="" style="border-color:#F8C6BD">
+                    {% endif %}
+                    <div class="p-topics__items p-topics__items--pink">
+                      <p class="p-topics__item--name resp-none">
+                        {{ article.title | truncate: 36 }}
+                      </p>
+                      <p class="p-topics__item--name resp-block">
+                        {{ article.title | truncate: 32 }}
+                      </p>
+                      <p class="p-topics__item--description c-description resp-none">
+                        {{ article.excerpt | truncate: 37}}
+                      </p>
+                      <p class="p-topics__item--description c-description resp-block">
+                        {{ article.excerpt | truncate: 32}}
+                      </p>
+                    </div>
+                  {% if article.metafields.custom._nolink != true %}</a>{% endif %}
+                </li>
+                {% endif %}
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        </section>
+
+{% schema %}
+  {
+    "name": "topics",
+    "settings": [
+		{
+          "type": "text",
+          "id": "topics",
+          "label": "TOPICS 説明文"
+      	},{
+          "type": "article",
+          "id": "project",
+          "label": "プロジェクト記事選択1"
+		},{
+          "type": "article",
+          "id": "project2",
+          "label": "プロジェクト記事選択2"
+		},{
+          "type": "article",
+          "id": "project3",
+          "label": "プロジェクト記事選択3"
+		},{
+          "type": "article",
+          "id": "project4",
+          "label": "プロジェクト記事選択4"
+        },{
+          "type": "article",
+          "id": "feature",
+          "label": "特集記事選択1"
+		},{
+          "type": "article",
+          "id": "feature2",
+          "label": "特集記事選択2"
+		},{
+          "type": "article",
+          "id": "feature3",
+          "label": "特集記事選択3"
+		},{
+          "type": "article",
+          "id": "feature4",
+          "label": "特集記事選択4"
+        }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

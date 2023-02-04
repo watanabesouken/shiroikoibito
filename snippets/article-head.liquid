@@ -1,0 +1,93 @@
+{% if blog.title == "特集" %}
+<div class="p-feature__bg p-feature-collection__bg">
+      {{ 'p-feature-collection__bg.png' | file_img_url : 'master' | img_tag: 'p-feature-collection__bg.png'}}     
+    </div>
+    <div class="p-feature__vegitable1 p-feature-collection__vegitable1">
+      {{ 'feature-vegitable1.png' | file_img_url : 'master' | img_tag: 'feature-vegitable1.png', 'fallin'}}
+    </div>
+    <div class="p-feature__vegitable2  p-feature-collection__vegitable2">
+      {{ 'feature-vegitable2.png' | file_img_url : 'master' | img_tag: 'feature-vegitable2', 'fallin'}}
+    </div>
+    <div class="p-feature__glass  p-feature-collection__glass">
+      {{ 'feature-glass_blog.png' | file_img_url : 'master' | img_tag: 'feature-glass.png', 'fallin'}}
+    </div>
+    <div class="p-feature__mistletoe  p-feature-collection__mistletoe">
+      {{ 'feature-mistletoe_blog.png' | file_img_url : 'master' | img_tag: 'feature-mistletoe.png', 'sway'}}
+    </div>
+    <div class="p-feature__top">
+      <p class="p-feature__ttl c-ttl">特　集</p>
+      {{ 'feature-underline.png' | file_img_url : 'master' | img_tag: 'feature-underline.png' }}
+    </div>
+    <div class="p-feature__mdl p-feature-collection__mdl">
+      {% for tag in article.tags %}
+        {% if tag != "すべて"%}
+      <div class="p-feature__badge">{{ tag }}</div>
+       {% endif %}
+      {% endfor %}
+    </div>
+{% endif %}
+
+{% if blog.title == "PROJECT" %}
+<div class="p-project__bg p-project__blog--bg">
+  {{ 'p-project-bg.png' | file_img_url : 'master' | img_tag: 'p-project-bg'}}
+</div>
+<div class="p-project__human1 p-project__blog--human1">
+  {{ 'project-human1.png' | file_img_url : 'master' | img_tag: 'project-human1' , 'fallin' }}      
+</div>
+<div class="p-project__human2 p-project__blog--human2">
+  {{ 'project-human2.png' | file_img_url : 'master' | img_tag: 'project-human2' , 'fallin' }}      
+</div>
+<div class="p-project__mistletoe p-project__blog--mistletoe">
+  {{ 'topics-mistletoe.png' | file_img_url : 'master' | img_tag: 'topics-mistletoe' , 'sway' }}      
+</div>
+<div class="p-project__bird p-project__blog--bird">
+  {{ 'project-bird.png' | file_img_url : 'master' | img_tag: 'project-bird' , 'fallin' }}      
+</div>
+
+<div class="p-feature__top p-project__blog--top">
+  <p class="p-project__ttl p-feature__ttl c-ttl">PROJECT</p>
+  {{ 'project-underline.png' | file_img_url : 'master' | img_tag: 'project-underline.png' }}
+</div>
+<div class="p-feature__mdl p-feature-collection__mdl">
+  {% for tag in article.tags %}
+        {% if tag != "すべて"%}
+      <div class="p-feature__badge">{{ tag }}</div>
+       {% endif %}
+      {% endfor %}
+</div>
+{% endif %}
+
+{% if blog.title == "お知らせ" %}
+	<div class="p-feature__bg p-news-collection__bg">
+      {{ 'article-news_bg.png' | file_img_url : 'master' | img_tag: 'p-feature-collection__bg.png'}}     
+    </div>
+    <div class="p-news-collection__student1">
+      {{ 'kv-student1.png' | file_img_url : 'master' | img_tag: 'student1', 'fallin'}}
+    </div>
+    <div class="p-news-collection__student3">
+      {{ 'kv-student3.png' | file_img_url : 'master' | img_tag: 'student3', 'fallin'}}
+    </div>
+	<div class="p-news-collection__human2">
+      {{ 'kv-human2.png' | file_img_url : 'master' | img_tag: 'human2', 'fallin'}}
+    </div>
+	<div class="p-news-collection__human3">
+      {{ 'kv-human3.png' | file_img_url : 'master' | img_tag: 'human3', 'fallin'}}
+    </div>
+	<div class="p-news-collection__human4">
+      {{ 'kv-human4.png' | file_img_url : 'master' | img_tag: 'human4', 'fallin'}}
+    </div>
+    <div class="p-feature__mistletoe  p-news-collection__mistletoe">
+      {{ 'news-mistletoe_blog.png' | file_img_url : 'master' | img_tag: 'news-mistletoe_blog', 'sway'}}
+    </div>
+    <div class="p-feature__top">
+      <p class="p-feature__ttl c-ttl">お知らせ</p>
+      {{ 'feature-underline.png' | file_img_url : 'master' | img_tag: 'feature-underline.png' }}
+    </div>
+    <div class="p-feature__mdl p-feature-collection__mdl">
+        {% for tag in article.tags %}
+        {% if tag != "すべて"%}
+      <div class="p-feature__badge">{{ tag }}</div>
+       {% endif %}
+      {% endfor %}
+    </div>
+{% endif %}

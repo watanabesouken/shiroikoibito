@@ -1,0 +1,40 @@
+{% if blog.title == '特集' or blog.title == 'お知らせ' %}
+{% if article.metafields.my_fields._the-author != blank %}
+{% assign metaimg2 = article.metafields.my_fields._author-img %}
+{% assign metaimg_url2 = metaimg2 | file_url %}
+<div class="outside-page">
+  <div class="outside-page__inner author-meta__inner">
+    <p class="author-meta__head {% if blog.title == 'お知らせ' %}author-meta__head-news{% endif %}">この記事を書いた人</p>
+    <img src="{{ metaimg_url2 }}">
+    <div class="outside-page__info">
+      <h5 class="outside-page__head">{{ article.metafields.my_fields._the-author }}</h5>
+      <p class="author-meta__p">{{ article.metafields.my_fields._author-description  | truncate: 120 }}</p>
+    </div>
+
+  </div>
+</div>
+{% endif %}            
+{% endif %}
+
+{% if blog.title == 'PROJECT' %}
+{% if article.metafields.my_fields._projecturl != blank %}
+<div class="a-project-btm">
+  <div class="a-project-btm__wrap__inner">
+    <div class="a-project_bg">
+    	{{ 'a-project_bg.png' | file_img_url : 'master' | img_tag: 'a-project_bg'}}     
+    </div>     
+    <div class="a-project_deer">
+    	{{ 'a-project_deer.png' | file_img_url : 'master' | img_tag: 'a-project_deer'}}     
+    </div> 
+    <div class="a-project_human">
+    	{{ 'a-project_human.png' | file_img_url : 'master' | img_tag: 'a-project_human'}}     
+    </div> 
+    <div class="a-project_mi">
+    	{{ 'a-project_mi.png' | file_img_url : 'master' | img_tag: 'a-project_mi'}}     
+    </div> 
+    <a href="{{ article.metafields.my_fields._projecturl }}">このプロジェクトを応援する</a>
+  </div>
+</div>
+{% endif %}            
+{% endif %}
+

@@ -1,0 +1,323 @@
+<section class="contact-section">
+{% render 'breadcrumbs-custom', show_next_prev: true %}
+<div class="contact-page__inner">
+	<div class="p-feature__bg p-news-collection__bg">
+      {{ 'contact_bg.png' | file_img_url : 'master' | img_tag: 'contact_bg.png','sp-none' }}     
+      {{ 'contact_bg-sp.png' | file_img_url : 'master' | img_tag: 'contact_bg.png','sp-block' }}     
+    </div>
+    <div class="p-project__cow">
+       {{ 'project-cow.png' | file_img_url : 'master' | img_tag: 'project-cow' , 'fallin' }}           
+    </div>
+    <div class="p-project__flower1">
+       {{ 'project-flower1.png' | file_img_url : 'master' | img_tag: 'project-flower1' , 'sway-s'}}      
+    </div>
+    <div class="p-project__flower2">
+       {{ 'project-flower2.png' | file_img_url : 'master' | img_tag: 'project-flower2' , 'sway-s' }}      
+    </div>
+    <div class="p-project__fruit">
+       {{ 'project-fruit.png' | file_img_url : 'master' | img_tag: 'project-fruit' , 'fallin' }}
+    </div>
+    <div class="p-feature__top">
+      <p class="p-feature__ttl c-ttl">{{ page.title }}</p>
+      {{ 'contact-underline.png' | file_img_url : 'master' | img_tag: 'contact-underline.png' }}
+    </div>
+  </div>
+
+<div class="contact-main">
+  {% if section.settings.use_columns %}
+    <div class="page-width row">
+      <div class="grid">
+        <div class="grid__item one-half small-down--one-whole">
+  {% else %}
+    <div class="large-row reading-width">
+  {% endif %}
+
+    <div class="rte {% unless section.settings.use_columns %} rte--expanded-images {% endunless%} clearfix">
+      {{ page.content }}
+    </div>
+
+  </div>
+
+  {% if section.settings.use_columns %}
+    <div class="grid__item one-half small-down--one-whole">
+    {% else %}
+    <div class="row reading-width">
+  {% endif %}
+
+    {% form 'contact' %}
+      {% if form.posted_successfully? %}
+        <script>
+      window.location = "/pages/contact-thanks";
+    </script>
+      {% endif %}
+
+      {{ form.errors | default_errors }}
+
+      {% if request.design_mode %}
+      {% liquid
+        assign email_exists = false
+        for block in section.blocks
+          if block.type == 'email_input'
+            assign email_exists = true
+          endif
+        endfor %}
+        {% if email_exists == false %}
+          <div class="error-message">You must include the Email input block for the form to work correctly.</div>
+        {% endif %}
+      {% endif %}
+
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'name_input' %}
+            <div class="form-row">
+              <label for="ContactFormName"><span class="form-require">必須</span>お名前</label>
+              <input type="text"
+                name="contact[name]"
+                id="ContactFormName"
+                placeholder="例）山田太郎" 
+                value="{% if form[name] %}{{ form[name] }}{% elsif customer %}{{ customer.name }}{% endif %}">
+            </div>
+
+          {% when 'email_input' %}
+            <div class="form-row">
+              <label for="ContactFormEmail"><span class="form-require">必須</span>メールアドレス</label>
+              <input type="email"
+                name="contact[email]"
+                id="ContactFormEmail"
+                value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+                spellcheck="false"
+                autocomplete="off"
+                autocapitalize="off"
+                placeholder="例）info@150farm.ishiya.co.jp" 
+                >
+            </div>
+
+          {% when 'phone_input' %}
+            <div class="form-row">
+              <label for="ContactFormPhone"><span class="form-require">必須</span>電話番号</label>
+              <input type="tel"
+                name="contact[phone]"
+                id="ContactFormPhone"
+                placeholder="例）09012349876　※ハイフンを入れずに入力してください。" 
+                value="{% if form[phone] %}{{ form[phone] }}{% elsif customer %}{{ customer.phone }}{% endif %}"
+                >
+              </div>
+
+          {% when 'message_input' %}
+            <div class="form-row c-text-area">
+              <label for="ContactFormMessage"><span class="ninni">任意</span>お問い合わせ内容</label>
+              <textarea rows="10" name="contact[body]" id="ContactFormMessage" placeholder="内容を入力してください。">{% if form.body %}{{ form.body }}{% endif %}</textarea>
+            </div>
+
+          {% when 'text' %}
+            <div class="rte">{{ block.settings.text }}</div>
+
+          {% when 'custom_input' %}
+            {% unless block.settings.title == blank %}
+              <div class="form-row">
+                {%- assign title_handle = block.settings.title | handle -%}
+                <label for="contact_{{ title_handle }}"><span class="form-require">必須</span>{{ block.settings.title | escape }}</label>
+                {% if block.settings.type == 'textarea' %}
+                  <textarea
+                    id="contact_{{ title_handle }}"
+                    name="contact[{{ title_handle }}]"
+					placeholder="例）山田太郎" 
+                    >
+                    {{- form[title_handle] -}}
+                  </textarea>
+                {% else %}
+                  <input
+                    type="{{ block.settings.type }}"
+                    id="contact_{{ title_handle }}"
+                    name="contact[{{ title_handle }}]"
+                    value="{{ form[title_handle] }}"
+                    placeholder="例)やまだたろう"  
+                    />
+                {% endif %}
+              </div>
+            {% endunless %}
+        {% endcase %}
+      {% endfor %}
+      <div class="attention">
+        <div class="attention__privacy-policy">
+          <p class="attention__privacy-policy-head">お客様情報の保護について</p>
+          <p>私たち石屋製菓株式会社は、個人情報の適正な収集・利用、およびその保護につとめています。ご記入いただ
+            きました情報の取り扱いにつきましては「<a href="/pages/privacy-policy">プライバシーポリシー</a>」をご参照下さい。</p>
+        </div>
+        <div class="check-attention">
+        上記の内容をご確認いただきましたら「同意する」にチェックを入れ、<br>
+          入力内容のご確認をお願いいたします。</div>
+        <div class="agreement-check">
+          <input type="checkbox" id="agreement" required><label for="agreement">同意する</label>
+        </div>
+      </div>
+      <div class="row submit-row">
+        <button type="button" class="mordal-view-btn">送信内容を確認</button>
+      </div>
+	<div class="mordal-form-check">
+      <div class="mordal-top">
+        <p>確認画面</p>
+      </div>
+      <div class="mordal-list">
+        <div class="mordal-name-list mordal-item form-row">
+          <p>お名前</p>
+          <div class="mordal-name"></div>
+        </div>
+        <div class="mordal-nameKana-list mordal-item form-row">
+          <p>お名前(ふりがな)</p>
+          <div class="mordal-nameKana"></div>
+        </div>
+        <div class="mordal-mail-list mordal-item form-row">
+          <p>メールアドレス</p>
+          <div class="mordal-mail"></div>
+        </div>
+        <div class="mordal-tel-list mordal-item form-row">
+          <p>電話番号</p>
+          <div class="mordal-tel"></div>
+        </div>
+        <div class="mordal-contactBody-list mordal-item form-row">
+          <p>お問い合わせ内容</p>
+          <div class="mordal-contactBody"></div>
+        </div>
+      </div>
+      <div class="mordal-button">
+        <button type="button">修正する</button>
+        <input type="submit" class="contact-form__submit btn" value="送信">
+      </div>
+      </div>
+    {% endform %}
+
+  </div>
+
+  {% if section.settings.use_columns %}
+    </div>
+  </div>
+  {% endif %}
+</div>
+</div>
+</div>
+</section>
+<div class="contact-mask">
+</div>
+
+{% schema %}
+  {
+    "name": "Contact page",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "An email input is required for the form to work."
+      },
+      {
+        "type": "checkbox",
+        "id": "show_title",
+        "label": "Show page title",
+        "default": true
+      },
+      {
+        "type": "select",
+        "id": "title_alignment",
+        "label": "Title alignment",
+        "default": "left",
+        "options": [
+          { "value": "left", "label": "Left" },
+          { "value": "center", "label": "Center" },
+          { "value": "right", "label": "Right" }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "id": "use_columns",
+        "label": "Enable column layout for content and form",
+        "default": true
+      }
+    ],
+    "blocks": [
+      {
+        "type": "name_input",
+        "name": "Name input",
+        "limit": 1
+      },
+      {
+        "type": "email_input",
+        "name": "Email input",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "paragraph",
+            "content": "This block is required for the form to send."
+          }
+        ]
+      },
+      {
+        "type": "message_input",
+        "name": "Message input",
+        "limit": 1
+      },
+      {
+        "type": "phone_input",
+        "name": "Phone input",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "checkbox",
+            "id": "required",
+            "label": "Required",
+            "default": false
+          }
+        ]
+      },
+      {
+        "type": "custom_input",
+        "name": "Custom input",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Label",
+            "default": "Custom input",
+            "info": "The custom input will not appear on the form without a label."
+          },
+          {
+            "type": "select",
+            "id": "type",
+            "label": "Type",
+            "default": "text",
+            "options": [
+              {
+                "label": "Text",
+                "value": "text"
+              },
+              {
+                "label": "Number",
+                "value": "number"
+              },
+              {
+                "label": "Text area",
+                "value": "textarea"
+              }
+            ]
+          },
+          {
+            "type": "checkbox",
+            "id": "required",
+            "label": "Required",
+            "default": false
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "name": "Text",
+        "settings": [
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text",
+            "default": "<p>Text content</p>"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

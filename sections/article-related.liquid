@@ -1,0 +1,109 @@
+<script type="text/javascript" src="{{ 'script.js' | asset_url }}"></script>
+<section class="p-feature article-related article-related__{% if blog.title == "特集" %}feature{% elsif blog.title == "PROJECT" %}project{% elsif blog.title == "お知らせ" %}news{% endif %}">
+{% if blog.title == "特集" or blog.title == "お知らせ" %}         
+         <div class="p-feature__inner">
+           <div class="p-feature__bg">
+             {% if blog.title == "特集" %}
+            {{ 'feature-bg.png' | file_img_url : 'master' | img_tag: 'feature-bg.png','resp-none' }}
+            {{ 'feature-bg.png' | file_img_url : 'master' | img_tag: 'feature_bg-resp.png','resp-block' }}             
+             {% endif %}
+             {% if blog.title == "お知らせ" %}             
+             {{ 'news-related_bg.png' | file_img_url : 'master' | img_tag: 'news-related_bg' }}
+             {% endif %}
+           </div>
+          <div class="p-feature__top fadeY-after">
+            <p class="p-feature__ttl c-ttl en">ARTICLES</p>
+            {{ 'feature-underline.png' | file_img_url : 'master' | img_tag: 'feature-underline.png' }}
+          </div>
+          <div class="p-feature__mdl fade-after">
+            その他の記事
+          </div>
+          <div class="p-feature__btm article-btm">
+            <ul class="p-feature__lists article-related__lists fadeY-after">
+               {% for article in blogs['feature'].articles limit: 6 %}
+		       {%  assign blogcount  = blogcount  | plus : 1 %}
+                  <li class="p-feature__list">	
+                    {% if article.metafields.custom._nolink != true %}<a href="{{ article.url }}">{% endif %}
+                   {% if article.image != blank %}
+                  <img src="{{ article.image.src | image_url: width:500 }}" alt="">
+                  {% else %}
+                  <img src="{{ 'noimage.png' | file_url }}" alt="noimage">
+                  {% endif %}
+                    <div class="p-feature__variety">
+                      <p class="p-feature__tag">
+                        {% for tag in article.tags %}
+						    {{ tag }}
+						{% endfor %}
+                      </p>
+                      <span>|</span>
+                      <p class="p-feature__date">{{ article.created_at | date: "%y. %m. %d " }}</p>
+                    </div>
+                    <p class="p-feature__description c-description">{{ article.title  | truncate: 52 }}</p>
+                    {% if article.metafields.custom._nolink != true %}</a>{% endif %}
+                  </li>
+              {% endfor %}
+            </ul>
+            <div class="p-feature__btn fade-after">
+              {% if blog.title == '特集' %}
+              <a href="/blogs/feature" class="c-btn">
+                <span>{{ blog.title }}一覧に戻る</span>
+              </a>
+              {% endif %}
+            </div>
+
+          </div>
+         </div>
+{% endif %}
+
+{% if blog.title == "PROJECT" %}
+         <div class="p-feature__inner">
+          <div class="p-feature__top fadeY-after">
+            <p class="p-feature__ttl c-ttl en">PROJECT</p>
+            {{ 'project-title_btm.png' | file_img_url : 'master' | img_tag: 'project-title_btm' }}
+          </div>
+          <div class="p-feature__mdl fade-after">
+            その他のプロジェクト
+          </div>
+        <div class="p-project__main-right fade-after">
+                <ul class="p-project__lists article-related__lists-project">
+                  {% for article in blog.articles limit: 4 %}
+                  {%  assign blogcount  = blogcount  | plus : 1 %}
+                  <li class="p-project__list" style="background:{% if blogcount == 1 %}#F2D300{% elsif blogcount == 2 %}#93D2D5{% elsif blogcount == 3 %}#F9D0C6{% endif %};">
+                    {% if article.metafields.custom._nolink != true %}<a href="{{ article.url }}">{% endif %}
+                      <span class="list-num">0{{ blogcount }}</span>
+                       {{ 'list-num-deco.png' | file_img_url : 'master' | img_tag: 'project-underline' ,'list-num-deco' }}                        
+                      {% if article.image != blank %}
+	                  <img class="project-thumbnail" src="{{ article.image.src | image_url: width:500 }}" alt="">
+    	              {% else %}
+        	          <img class="project-thumbnail" src="{{ 'noimage.png' | file_url }}" alt="noimage">
+            	      {% endif %}
+                      <div class="p-project__title">
+                        <p>{{ article.title | truncate: 20}}</p>
+                      </div>
+                      <p class="p-feature__description c-description">{{ article.excerpt }}</p>
+                    {% if article.metafields.custom._nolink != true %}</a>{% endif %}
+                  </li>
+                  {% endfor %}
+                </ul>
+              </div>
+         </div>
+{% endif %}
+</section>
+
+{% schema %}
+  {
+    "name": "ARTICLES",
+    "settings": [],
+	"presets": [
+      {
+        "name": "ARTICLES"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

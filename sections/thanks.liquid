@@ -1,0 +1,178 @@
+<section class="contact-section">
+{% render 'breadcrumbs-custom', show_next_prev: true %}
+<div class="contact-page__inner">
+	<div class="p-feature__bg p-news-collection__bg">
+      {{ 'contact_bg.png' | file_img_url : 'master' | img_tag: 'contact_bg.png','sp-none' }}     
+      {{ 'contact_bg-sp.png' | file_img_url : 'master' | img_tag: 'contact_bg.png','sp-block' }}     
+    </div>
+    <div class="p-project__cow">
+       {{ 'project-cow.png' | file_img_url : 'master' | img_tag: 'project-cow' , 'fallin' }}           
+    </div>
+    <div class="p-project__flower1">
+       {{ 'project-flower1.png' | file_img_url : 'master' | img_tag: 'project-flower1' , 'sway-s'}}      
+    </div>
+    <div class="p-project__flower2">
+       {{ 'project-flower2.png' | file_img_url : 'master' | img_tag: 'project-flower2' , 'sway-s' }}      
+    </div>
+    <div class="p-project__fruit">
+       {{ 'project-fruit.png' | file_img_url : 'master' | img_tag: 'project-fruit' , 'fallin' }}
+    </div>
+    <div class="p-feature__top">
+      <p class="p-feature__ttl c-ttl">完了</p>
+      {{ 'contact-underline.png' | file_img_url : 'master' | img_tag: 'contact-underline.png' }}
+    </div>
+  </div>
+
+<div class="contact-main">
+  {% if section.settings.use_columns %}
+    <div class="page-width row">
+      <div class="grid">
+        <div class="grid__item one-half small-down--one-whole">
+  {% else %}
+    <div class="large-row reading-width">
+  {% endif %}
+
+    <div class="rte {% unless section.settings.use_columns %} rte--expanded-images {% endunless%} clearfix">
+      {{ page.content }}
+    </div>
+      <a href="{{ shop.url }}">TOPページへ</a> 
+  </div>
+
+  {% if section.settings.use_columns %}
+    <div class="grid__item one-half small-down--one-whole">
+    {% else %}
+    <div class="row reading-width">
+  {% endif %}
+
+
+  </div>
+
+  {% if section.settings.use_columns %}
+    </div>
+  </div>
+  {% endif %}
+</div>
+</div>
+</div>
+</section>
+{% schema %}
+  {
+    "name": "Contact page",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "An email input is required for the form to work."
+      },
+      {
+        "type": "checkbox",
+        "id": "show_title",
+        "label": "Show page title",
+        "default": true
+      },
+      {
+        "type": "select",
+        "id": "title_alignment",
+        "label": "Title alignment",
+        "default": "left",
+        "options": [
+          { "value": "left", "label": "Left" },
+          { "value": "center", "label": "Center" },
+          { "value": "right", "label": "Right" }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "id": "use_columns",
+        "label": "Enable column layout for content and form",
+        "default": true
+      }
+    ],
+    "blocks": [
+      {
+        "type": "name_input",
+        "name": "Name input",
+        "limit": 1
+      },
+      {
+        "type": "email_input",
+        "name": "Email input",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "paragraph",
+            "content": "This block is required for the form to send."
+          }
+        ]
+      },
+      {
+        "type": "message_input",
+        "name": "Message input",
+        "limit": 1
+      },
+      {
+        "type": "phone_input",
+        "name": "Phone input",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "checkbox",
+            "id": "required",
+            "label": "Required",
+            "default": false
+          }
+        ]
+      },
+      {
+        "type": "custom_input",
+        "name": "Custom input",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Label",
+            "default": "Custom input",
+            "info": "The custom input will not appear on the form without a label."
+          },
+          {
+            "type": "select",
+            "id": "type",
+            "label": "Type",
+            "default": "text",
+            "options": [
+              {
+                "label": "Text",
+                "value": "text"
+              },
+              {
+                "label": "Number",
+                "value": "number"
+              },
+              {
+                "label": "Text area",
+                "value": "textarea"
+              }
+            ]
+          },
+          {
+            "type": "checkbox",
+            "id": "required",
+            "label": "Required",
+            "default": false
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "name": "Text",
+        "settings": [
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text",
+            "default": "<p>Text content</p>"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

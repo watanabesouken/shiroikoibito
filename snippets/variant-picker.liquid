@@ -1,0 +1,55 @@
+{% for option in product.options_with_values %}
+  <div class="row js">
+    {%- capture option_id -%}{{ section.id }}-{{ option.name | handle }}{%- endcapture -%}
+    {%- assign swatches = false -%}
+
+    {%- if settings.swatch_enabled_productpage and settings.swatch_option_name contains option.name -%}
+      {%- assign swatches = true -%}
+    {%- endif -%}
+
+    {%- if swatches and settings.swatch_method == 'image' -%}
+      <style>
+        {%- assign option_index0 = forloop.index0 -%}
+        {%- for value in option.values -%}
+          {%- for variant in product.variants -%}
+            {%- if variant.options[option_index0] == value -%}
+              .product-detail[data-product-id="{{ product.id }}"] [data-swatch="{{ value | downcase | replace: '"', '' }}"]::before { --swatch-background-image: url({{ variant.featured_media.preview_image | img_url: '80x80', crop: settings.swatch_crop_align  }}) }
+              {%- break -%}
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endfor -%}
+      </style>
+    {%- endif -%}
+
+    {%- if settings.variant_style == 'dropdown' -%}
+      <div class="option-selector" data-single-option-selector data-selector-type="dropdown" data-index="option{{ option.position }}">
+        {% render 'custom-select',
+          id: option_id,
+          label: option.name,
+          label_inside: true,
+          option_values: option.values,
+          selected_value: option.selected_value,
+          swatches: swatches
+        %}
+      </div>
+    {%- else -%}
+      <fieldset class="option-selector" data-single-option-selector data-selector-type="listed" data-index="option{{ option.position }}">
+        <legend class="label">
+          {{- option.name -}}{% if swatches %} - <span class="js-option-title">{{ option.selected_value }}</span>{% endif %}
+        </legend>
+        <div class="option-selector__btns">
+          {%- for value in option.values -%}
+            <input class="opt-btn js-option" type="radio" name="{{ option_id }}-option" id="{{ option_id }}-opt-{{ forloop.index0 }}" value="{{ value | escape }}"{% if option.selected_value == value %} checked{% endif %}>
+            <label class="opt-label{% if swatches == true %}{% if settings.swatch_method == 'image' %} opt-swatch--image{% else %} opt-swatch--dot{% endif %}{% endif %}"
+                  {% if swatches == true %} data-swatch="{{ value | downcase | replace: '"', ''}}"{% endif %} for="{{ option_id }}-opt-{{ forloop.index0 }}">{{ value }}</label>
+
+          {%- endfor -%}
+        </div>
+      </fieldset>
+      {%- if show_size_chart == true and option.name == block.settings.size_chart_option_name -%}
+        <a href="{{ size_chart_page.url }}" class="standard-link tiny-text size-chart-link js-size-chart-open">{{ 'products.product.show_size_chart' | t }}</a>
+      {%- endif -%}
+    {%- endif -%}
+
+  </div>
+{% endfor %}

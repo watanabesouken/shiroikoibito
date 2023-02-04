@@ -1,0 +1,149 @@
+<div class="product-block {{ grid_class | default: 'grid-flex__item one-quarter small-down--one-half' }}{% if quickbuy %} js-contains-quickbuy{% endif %}">
+  <div class="product-block__image-container">
+    <div class="global-border-radius {% if product.media.size > 1 or settings.product_grid_image_shape == 'natural' or settings.prod_thumb_crop %}hover-images{% endif %} {% if settings.hover_image_enabled == true and product.media.size > 1 %} hover-images--two {% if product.featured_media.preview_image.aspect_ratio == product.media[1].preview_image.aspect_ratio %}same-aspect-ratio{% endif %}{% endif %} relative">
+      <a class="product-block__image product-block__image--shape-{{ settings.product_grid_image_shape }} product-block__image--crop-{{ settings.prod_thumb_crop }} product-block__image--valign-{{ settings.prod_thumb_crop_align }}" href="{{ product.url | within: collection }}">
+        {%- if product.featured_media != blank -%}
+          <div class="image-one">
+            {% liquid
+              if settings.product_grid_image_shape == 'natural'
+                assign aspect_ratio = false
+              elsif settings.product_grid_image_shape == 'square'
+                assign aspect_ratio = 1.0
+              elsif settings.product_grid_image_shape == 'landscape-32'
+                assign aspect_ratio = 1.5
+              elsif settings.product_grid_image_shape == 'landscape-54'
+                assign aspect_ratio = 1.25
+              elsif settings.product_grid_image_shape == 'portrait-45'
+                assign aspect_ratio = 0.8
+              elsif settings.product_grid_image_shape == 'portrait-23'
+                assign aspect_ratio = 0.67
+              endif
+            %}
+            {% render 'responsive-image', image: product.featured_media.preview_image, aspect_ratio: aspect_ratio %}
+          </div>
+          {%- if settings.hover_image_enabled == true and product.media.size > 1 -%}
+            <div class="image-two">
+              <div class="rimage-background fade-in lazyload global-border-radius"
+                   data-bgset="{% render 'bgset', image: product.media[1].preview_image %}"
+                   data-sizes="auto"
+                   data-parent-fit="cover">
+                <noscript>
+                  <img src="{{ product.media[1].preview_image | img_url: '1024x1024' }}" alt="{{ product.media[1].preview_image.alt | escape }}" class="rimage-background__image">
+                </noscript>
+              </div>
+            </div>
+          {%- endif -%}
+        {%- else -%}
+          {{- product.featured_media.preview_image | img_url: '600x600' | img_tag -}}
+        {%- endif -%}
+      </a>
+
+      {%- if quickbuy -%}
+        <a class="product-block__quicklook-btn btn--quicklook btn btn--primary js-quickbuy-button" href="{{ product.url }}">{{ 'products.quickbuy.quick_buy' | t }}</a>
+        {% render 'quick-buy-placeholder', product: product %}
+      {%- endif -%}
+    </div>
+  </div>
+
+  <div class="product-block__title">
+    <a href="{{ product.url | within: collection }}" class="product-block__title-link">{{ product.title }}</a>
+  </div>
+
+  {%- if show_vendor -%}
+    <div class="product-block__vendor">
+      {{- product.vendor -}}
+    </div>
+  {%- endif -%}
+
+  <div class="product-price">
+    {%- assign cheapest_variant = product.variants | sort: 'price' | first -%}
+    {% render 'unit-price', variant: cheapest_variant %}
+
+    {% if product.price_varies %}
+      <span class="product-price__from">{{ 'products.product.from_text' | t }}</span>
+    {% endif %}
+
+    <span class="theme_money{% if cheapest_variant.compare_at_price > cheapest_variant.price %} product-price__reduced{% endif %}">
+      {%- if settings.product_currency_code_enabled -%}
+        {{- cheapest_variant.price | money_with_currency -}}
+      {%- else -%}
+        {{- cheapest_variant.price | money -}}
+      {%- endif -%}
+    </span>
+
+    {% if cheapest_variant.compare_at_price > cheapest_variant.price %}
+      <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
+      <span class="product-price__compare theme-money">{{ cheapest_variant.compare_at_price | money }}</span>
+    {% endif %}
+
+    {% if product.available %}
+      {% if cheapest_variant.compare_at_price > cheapest_variant.price and settings.sale_label_enabled %}
+        <span class="product-label product-label--on-sale global-border-radius">{{ 'products.product.on_sale' | t }}</span>
+      {% endif %}
+    {% elsif settings.sold_label_enabled %}
+      <span class="product-label product-label--sold-out global-border-radius">{{ 'products.product.sold_out' | t }}</span>
+    {% endif %}
+  </div>
+
+  {%- if settings.swatch_enabled_grid -%}
+    {%- liquid
+      assign swatch_count = 0
+      assign swatch_mobile_limit = 3
+    -%}
+    <div class="product-block__swatches">
+      {%- for product_option in product.options_with_values -%}
+        {%- liquid
+          if settings.swatch_enabled_productpage and settings.swatch_option_name contains product_option.name
+            assign is_swatch = true
+          else
+            assign is_swatch = false
+          endif
+        -%}
+        {%- if is_swatch == true -%}
+          {%- assign product_option_position_0index = product_option.position | minus: 1 -%}
+          {%- for product_option_value in product_option.values -%}
+
+            {%- liquid
+              assign option_value_variant = false
+              for variant in product.variants
+                if variant.options[product_option_position_0index] == product_option_value
+                  assign option_value_variant = variant
+                  break
+                endif
+              endfor
+
+              if is_swatch and settings.swatch_method == 'image' and option_value_variant.featured_media == blank
+                continue
+              endif
+
+              assign swatch_count = swatch_count | plus: 1
+            -%}
+
+            <span class="{% if settings.swatch_method == 'image' %}product-swatch-inline__image {% else %}product-swatch-inline__dot {% endif %}rimage-background fade-in lazyload"
+              data-option-item="{{ product_option_value | downcase | escape }}"
+              {%- if settings.swatch_method == 'standard' -%}
+                data-swatch="{{ product_option_value | downcase | replace: '"', '' }}"
+              {%- elsif settings.swatch_method == 'image' and option_value_variant.featured_media -%}
+                data-bgset="{{ option_value_variant.featured_media.preview_image | img_url: '80x80', crop: settings.swatch_crop_align }}" data-parent-fit="cover"
+              {%- endif -%}></span>
+
+          {%- endfor -%}
+        {%- endif -%}
+      {%- endfor -%}
+
+      {%- if settings.swatch_method == 'image' and swatch_count > swatch_mobile_limit -%}
+        {%- assign remaining = swatch_count | minus: swatch_mobile_limit -%}
+        <span class="product-block__swatches-more-label tiny-text">{{ 'collections.general.more_swatches' | t: count: remaining }}</span>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
+  {%- if settings.enable_product_reviews_collection and product.metafields.reviews.rating_count != blank and product.metafields.reviews.rating_count > 0 -%}
+    <div class="product-block__rating theme-product-reviews-summary">
+      {% render 'rating', rating_value: product.metafields.reviews.rating.value %}
+      <span class="cc-rating-custom-caption">
+        {{ product.metafields.reviews.rating_count }} {{ 'products.product.reviews_link' | t: count: product.metafields.reviews.rating_count | downcase }}
+      </span>
+    </div>
+  {%- endif -%}
+</div>

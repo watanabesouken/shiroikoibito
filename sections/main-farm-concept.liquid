@@ -1,0 +1,68 @@
+
+
+     <div class="p-farm-concept">
+             {{ 'p-farm-pcbg1.png' | file_img_url : 'master' | img_tag: 'p-farm-kv-bg' , 'p-farm-kv-bg p-farm-pcOnly' }}
+             {{ 'p-farm-spbg1.png' | file_img_url : 'master' | img_tag: 'p-farm-kv-bg' , 'p-farm-spbg1 p-farm-spOnly' }}
+       <div class="p-farm-concept__inner">
+             {{ 'kv-mistletoe.png' | file_img_url : 'master' | img_tag: 'p-farm-concept-mistletoe' , 'p-farm-concept-mistletoe sway' }}
+             {{ 'story-human8.png' | file_img_url : 'master' | img_tag: 'p-farm-concept-human1','p-farm-concept-human1'}}
+             {{ 'kv-human3.png' | file_img_url : 'master' | img_tag: 'p-farm-concept-human2','p-farm-concept-human2'}}
+             {{ 'product-human2.png' | file_img_url : 'master' | img_tag: 'p-farm-concept-human3','p-farm-concept-human3'}}
+
+         <div class="p-farm-concept__top">
+           <div class="p-farm-concept__topLeft">
+             <h2 class="p-farm-concept__title">『協創』</h2>
+             <p class="p-farm-concept__hurigana">[ きょうそう ]</p>
+           </div>
+           <div class="p-farm-concept__topRight">
+             <p class="p-farm-concept__subtitle">次の150年を､<span class="p-kv__green">協創</span>で､切り拓く｡</p>
+             <p class="p-farm-concept__compliment c-compliment">それは、力を合わせ新しい価値を作り上げていくこと。</p>
+             <p class="p-farm-concept__description c-farm-description">
+              わたしたちは、たくさんの人たちと力を合わせ､<br>
+              新たな開拓史を創り､次の150年も魅力ある北海道を協創により築いていくことを意志に､<br class="pcOnly">
+              プラットフォームを立ち上げました｡
+            </p>
+           </div>
+         </div>
+         <div class="p-farm-concept__btm">
+           <div class="p-farm-concept__btmLeft">
+                   <div class="p-farm-concept__btmTop">
+                        <h3 class="p-farm-concept__heading">PLATFORM</h3>
+                         {{ 'p-farm-concept-underline.png' | file_img_url : 'master' | img_tag: 'p-farm-concept__underline','p-farm-concept__underline'}}
+                     </div>
+             <p class="p-farm-concept__compliment c-compliment sp-ta-center">北海道の未来の種を咲かせるファームストーリーの舞台</p>
+             <img class="platform_img spOnly-650" src="https://cdn.shopify.com/s/files/1/0618/8282/6930/files/platform_wh.jpg?v=1658311351" alt="PLATFORM">
+            <p class="p-farm-concept__description c-farm-description">
+              プラットフォームは北海道150年ファームとISHIYAの理念のカタチ。<br>
+北海道の新たな歴史に刻まれるであろう未来の種をみつけ、つなげる舞台のこと。<br>
+この舞台で生まれたストーリーが北海道中に広がり、魅力の花を咲かせます。
+            </p>
+           </div>
+           <div class="p-farm-concept__btmRight">
+<!--              <img class="platform_img" src="https://cdn.shopify.com/s/files/1/0618/8282/6930/files/platform_op.png?v=1658311444" alt="PLATFORM"> -->
+             <img class="platform_img  pcOnly-650" src="https://cdn.shopify.com/s/files/1/0618/8282/6930/files/platform_wh.jpg?v=1658311351" alt="PLATFORM">
+<!--              <iframe width="600" height="400" src="https://www.youtube.com/embed/SXf2z2H24Wc?autoplay=1&mute=1&playlist=SXf2z2H24Wc&loop=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+           </div>
+         </div>
+       </div>
+     </div>
+
+{% schema %}
+  {
+    "name": "farm-concept",
+    "settings": [
+		
+	],
+	"presets": [
+      {
+        "name": "farm-concept"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

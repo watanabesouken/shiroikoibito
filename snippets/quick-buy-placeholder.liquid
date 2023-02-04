@@ -1,0 +1,173 @@
+{%- liquid
+  assign current_variant = product.selected_or_first_available_variant
+  assign product_form_id = 'product-form-' | append: section.id | append: product.id
+  assign installments_form_id = product_form_id | append: '-installments'
+-%}
+
+<style>
+  {%- for media in product.media -%}
+    {%- if media.media_type == 'model' -%}
+      {%- assign media_ar = 1 -%}
+    {%- elsif media.media_type == 'image' -%}
+      {%- assign media_ar = media.preview_image.aspect_ratio -%}
+    {%- else -%}
+      {%- assign media_ar = media.aspect_ratio -%}
+    {%- endif -%}
+    [data-product-id="{{ product.id }}"].quickbuy-form .quickbuy__product-media-{{ forloop.index }} {
+      width: {{ 360 | times: media_ar | floor }}px;
+    }
+    @media (max-height: 750px) {
+      [data-product-id="{{ product.id }}"].quickbuy-form .quickbuy__product-media-{{ forloop.index }} {
+        width: {{ 280 | times: media_ar | floor }}px;
+      }
+    }
+    @media (max-height: 650px) {
+      [data-product-id="{{ product.id }}"].quickbuy-form .quickbuy__product-media-{{ forloop.index }} {
+        width: {{ 230 | times: media_ar | floor }}px;
+      }
+    }
+  {%- endfor -%}
+</style>
+
+<script type="application/json" class="ProductJson-{{ product.id }}" data-product-json>
+ {{ product | json }}
+</script>
+<script type="text/template" class="quickbuy-placeholder-template">
+  <div class="quickbuy-form placeholder product-detail" data-product-id="{{ product.id }}">
+    <div class="container">
+      <div class="quickbuy__toolbar">
+        <a class="quickbuy__more" href="{{ product.url }}">{{ 'products.quickbuy.more_details' | t }}<span class="icon feather-icon">{% render 'feather-chevron-right' %}</span></a>
+        <div class="quickbuy__close">
+          <a href="#" class="js-close-quickbuy icon feather-icon" aria-label="{{ 'general.accessibility_labels.close' | t | escape }}">{% render 'feather-x' %}</a>
+        </div>
+      </div>
+      <div class="quickbuy__media-container relative {% if product.media.first.media_type == 'image' %}quickbuy__media-container--current-image{% endif %}">
+        {% if product.available %}
+          {% if product.compare_at_price_max > product.price and settings.sale_label_enabled %}
+            <span class="product-label product-label--on-sale global-border-radius">{{ 'products.product.on_sale' | t }}</span>
+          {% endif %}
+        {% elsif settings.sold_label_enabled %}
+          <span class="product-label product-label--sold-out global-border-radius">{{ 'products.product.sold_out' | t }}</span>
+        {% endif %}
+
+        <div class="quickbuy__product-media global-border-radius">
+          {% for media in product.media %}
+            <div class="quickbuy__product-media-item quickbuy__product-media-{{ forloop.index }} relative" data-media-id="{{ media.id }}">
+              {% render 'media', media: media %}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="quickbuy__titlebar">
+        <div class="quickbuy__slider-controls">
+          <button class="btn--plain prev icon feather-icon" aria-label="{{ 'general.accessibility_labels.previous' | t | escape }}">{% render 'feather-arrow-left' %}</button>
+          <button class="btn--plain next icon feather-icon" aria-label="{{ 'general.accessibility_labels.next' | t | escape }}">{% render 'feather-arrow-right' %}</button>
+        </div>
+
+        <div>
+          <div class="quickbuy__title">{{ product.title }}</div>
+
+          <div class="quickbuy__price product-price" data-price-wrapper>
+            <span class="{% if current_variant.compare_at_price > current_variant.price %}product-price__reduced{% endif %}" data-product-price>
+              <span class="theme-money">
+                {%- if settings.product_currency_code_enabled -%}
+                  {{- current_variant.price | money_with_currency -}}
+                {%- else -%}
+                  {{- current_variant.price | money -}}
+                {%- endif -%}
+              </span>
+            </span>
+            {% if product.compare_at_price_max > product.price %}
+              <span class="visually-hidden" data-compare-text>{{ 'products.product.regular_price' | t }}</span>
+              <span data-compare-price>
+                <span class="product-price__compare">
+                  {% if current_variant.compare_at_price > current_variant.price %}
+                    <span class="theme-money">{{ current_variant.compare_at_price | money }}</span>
+                  {% endif %}
+                </span>
+              </span>
+            {% endif %}
+            {% render 'unit-price', variant: current_variant %}
+          </div>
+
+          {%- form 'product', product, id: installments_form_id, class: form_class -%}
+            <input type="hidden" name="id" value="{{ current_variant.id }}" data-product-secondary-select>
+            {{ form | payment_terms }}
+          {%- endform -%}
+
+          {%- if settings.show_tax_and_shipping -%}
+            {%- if cart.taxes_included or shop.shipping_policy.body != blank -%}
+              <div class="product-policies small-text">
+                {%- if cart.taxes_included -%}
+                  {{ 'products.product.include_taxes' | t }}
+                {%- endif -%}
+                {%- if shop.shipping_policy.body != blank -%}
+                  {{ 'products.product.shipping_policy_html' | t: link: shop.shipping_policy.url }}
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+    <div class="container quickbuy__form {% if settings.enable_payment_button %} has-dynamic-buttons {% endif %}">
+      {% capture form_class %}quick-buy__product-form{% if settings.on_add_to_cart == 'ajax' and template.name != 'cart' %} ajax-product-form{% endif %}{% unless current_variant.available %} variant--unavailable{% endunless %}{% endcapture %}
+      {%- form 'product', product, id: product_form_id, class: form_class -%}
+        {% unless product.has_only_default_variant %}
+          <div class="quickbuy__variants flex">
+            {% render 'variant-picker', product: product %}
+          </div>
+        {% endunless %}
+
+        <select name="id" class="no-js" data-product-select aria-label="{{ 'products.product.selector_label' | t | escape }}">
+          {%- for variant in product.variants -%}
+            <option value="{{ variant.id }}"
+              {% if variant == current_variant %}selected{% endif %}
+              {% unless variant.available %}disabled{% endunless %}
+              {% if variant.inventory_management != blank %}
+                {% if variant.inventory_quantity <= 0 %}data-stock="out"{% endif %}
+                {% if variant.inventory_quantity < 10 and settings.hide_unavailable_quantity_opts %}
+                  data-inventory="{{ variant.inventory_quantity }}"
+                {% endif %}
+              {% endif %}>
+              {{- variant.title -}}
+            </option>
+          {%- endfor -%}
+        </select>
+
+        <div class="quickbuy__product-form--confirmation grid {% if settings.enable_payment_button and product.selling_plan_groups == empty %}with-payment-buttons{% endif %}">
+          {%- if settings.quickbuy_show_quantity_selector == true -%}
+            <div class="quickbuy__quantity grid__item one-quarter">
+              {% render 'quantity-selector', variant: current_variant %}
+            </div>
+          {%- endif -%}
+          <div class="grid__item three-quarters">
+            {% if settings.enable_payment_button %}<div class="payment-buttons">{% endif %}
+              <button
+                class="btn quickbuy__submit {% if settings.enable_payment_button %}btn--secondary{% else %}btn--subtle-hover{% endif %}"
+                type="submit"
+                name="add"
+                data-add-to-cart
+                {% unless current_variant.available %}disabled="disabled"{% endunless %}>
+                  <span data-add-to-cart-text>
+                    {% if current_variant.available %}
+                      {{ 'products.product.add_to_cart' | t }}
+                    {% else %}
+                      {{ 'products.product.sold_out' | t }}
+                    {% endif %}
+                  </span>
+              </button>
+
+              {%- if settings.enable_payment_button and product.selling_plan_groups == empty -%}
+                {{ form | payment_button }}
+              {%- endif -%}
+            {% if settings.enable_payment_button %}</div>{% endif %}
+          </div>
+        </div>
+        {%- if product.available and settings.quickbuy_show_backorder_text == true -%}
+          {% render 'backorder', product: product, variant: current_variant %}
+        {%- endif -%}
+      {%- endform -%}
+    </div>
+  </div>
+</script>

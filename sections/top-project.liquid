@@ -1,0 +1,112 @@
+<script type="text/javascript" src="{{ 'script.js' | asset_url }}"></script>
+{%- assign blog = blogs[section.settings.project_list] -%}
+<section class="p-project">         
+  <div class="p-project__inner">
+    <div class="p-project__bg">
+     {{ 'project-bg.png' | file_img_url : 'master' | img_tag: 'project-bg','resp-none' }}
+     {{ 'project-bg_resp.png' | file_img_url : 'master' | img_tag: 'project-bg', 'resp-block' }}
+    </div>
+    <div class="p-project__cow">
+       {{ 'project-cow.png' | file_img_url : 'master' | img_tag: 'project-cow' , 'fallin-after' }}           
+    </div>
+    <div class="p-project__flower1">
+       {{ 'project-flower1.png' | file_img_url : 'master' | img_tag: 'project-flower1' , 'sway-s-after'}}      
+    </div>
+    <div class="p-project__flower2">
+       {{ 'project-flower2.png' | file_img_url : 'master' | img_tag: 'project-flower2' , 'sway-s-after' }}      
+    </div>
+    <div class="p-project__fruit">
+       {{ 'project-fruit.png' | file_img_url : 'master' | img_tag: 'project-fruit' , 'fallin-after' }}
+    </div>
+    <div class="p-project__human1">
+       {{ 'project-human1.png' | file_img_url : 'master' | img_tag: 'project-human1' , 'fallin-after' }}      
+    </div>
+    <div class="p-project__human2">
+       {{ 'project-human2.png' | file_img_url : 'master' | img_tag: 'project-human2' , 'fallin-after' }}      
+    </div>
+    <div class="p-project__mistletoe">
+       {{ 'topics-mistletoe.png' | file_img_url : 'master' | img_tag: 'topics-mistletoe' , 'sway-s-after' }}      
+    </div>
+    <div class="p-project__bird">
+       {{ 'project-bird.png' | file_img_url : 'master' | img_tag: 'project-bird' , 'fallin-after' }}      
+    </div>
+    <div class="p-project__vegitable1">
+       {{ 'project-broccoli.png' | file_img_url : 'master' | img_tag: 'project-broccoli' , 'fallin-after' }}      
+    </div>
+    <div class="p-project__vegitable2">
+       {{ 'project-tomato.png' | file_img_url : 'master' | img_tag: 'project-tomato' , 'fallin-after' }}      
+    </div>
+    <div class="p-project__main">
+      <div class="p-project__main-left fadeY-after">
+        <div class="p-project__top">
+          <p class="p-project__ttl c-ttl en">PROJECT</p>
+       {{ 'project-underline.png' | file_img_url : 'master' | img_tag: 'project-underline' }}          
+        </div>
+        <div class="p-project__mdl">
+          {% if section.settings.title != blank %}
+          <h3>{{ section.settings.title }}</h3>
+          {% endif %}
+          {% if section.settings.project != blank %}
+          <p class="p-project__description c-description">{{ section.settings.project }}</p>
+          {% endif %}
+        </div>
+        <div class="p-feature__btn">
+          <a href="{{ blog.url }}" class="c-btn">
+            プロジェクト一覧を見る
+          </a>
+        </div>
+      </div>
+      <div class="p-project__main-right fade-after">
+        <ul class="p-project__lists">
+          {% for article in blog.articles limit: 4 %}
+          {%  assign blogcount  = blogcount  | plus : 1 %}
+          <li class="p-project__list" style="background:{% if blogcount == 1 %}#F2D300{% elsif blogcount == 2 %}#93D2D5{% elsif blogcount == 3 %}#F9D0C6{% endif %};">
+            
+            {% if article.metafields.custom._nolink != true %}<a href="{{ article.url }}">{% endif %}
+              <span class="list-num">0{{ blogcount }}</span>
+		       {{ 'list-num-deco.png' | file_img_url : 'master' | img_tag: 'project-underline' ,'list-num-deco' }}
+              {% if article.image != blank %}
+			  <img class="pj-slide-img" src="{{ article.image.src | image_url: width:500 }}" alt="">
+              {% else %}
+              <img class="pj-slide-img pj-slide-nolink" src="{{ 'noimage.png'}}">
+              {% endif %}
+              <div class="p-project__title">
+                <p>{{ article.title | truncate: 20}}</p>
+              </div>
+              <p class="p-feature__description c-description">{{ article.excerpt | truncate: 80}}</p>
+            {% if article.metafields.custom._nolink != true %}</a>{% endif %}
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{% schema %}
+  {
+    "name": "project",
+    "settings": [
+		{
+          "type": "text",
+          "id": "title",
+          "label": "PROJECT タイトル"
+		},{
+		  "type": "text",
+          "id": "project",
+          "label": "PROJECT 説明文"
+      	},{
+		"type": "blog",
+          "id": "project_list",
+		  "label": "表示するブログ記事を選択"
+		}
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

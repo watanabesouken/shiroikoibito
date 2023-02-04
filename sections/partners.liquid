@@ -1,0 +1,86 @@
+<section class="partners-main">
+<div class="p-feature__mdl">
+  {% if section.settings.partners != blank %}
+  <p class="p-feature__description c-description">{{ section.settings.partners }}</p>
+  {% endif %}
+</div>
+<ul>
+  {% if section.blocks.size > 0 %}
+  {% for block in section.blocks %}
+  <li>
+    <div class="partner-info__left">
+      {% if block.settings.img != blank %}
+      <img src="{{ block.settings.img | img_url: 'master'}}">
+      {% else %}
+	<img src="{{ 'noimage.png' | file_url }}">
+      {% endif %}
+    </div>
+    <div class="partner-info__right">
+      <h3>{{ block.settings.name }}</h3>
+      <p class="partner-subtitle">{{ block.settings.subname }}</p>
+      <p class="partner-text">{{ block.settings.text }}</p>
+      <a href="mailto:{{ block.settings.email }}" class="p-email">{{ block.settings.email }}</a> 
+    </div>
+  </li>
+  {% endfor %}
+  {% endif %}
+</ul>
+</section>
+
+{% schema %}
+  {
+    "name": "パートナーズ(参画事業者)",
+"presets": [
+{
+"category": "Custom Content",
+"name": "パートナー紹介"
+}
+],
+"settings": [
+{
+"id": "partners",
+"type": "textarea",
+"label": "説明文"
+}
+],
+"blocks": [
+{
+"type": "select",
+"name": "パートナーを追加する",
+"settings": [
+{
+"id": "img",
+"type": "image_picker",
+"label": "パートナー画像"
+},
+{
+"id": "name",
+"type": "text",
+"label": "パートナー名"
+},
+{
+"id": "subname",
+"type": "text",
+"label": "パートナーサブタイトル"
+},
+{
+"id": "text",
+"type": "textarea",
+"label": "パートナー説明文"
+},
+{
+"id": "email",
+"type": "text",
+"label": "パートナーメールアドレス"
+}
+]
+}
+]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

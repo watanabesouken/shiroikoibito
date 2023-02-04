@@ -1,0 +1,34 @@
+<div class="container row large-row-under">
+  <div class="reading-width">
+    <h1 class="giant-title text-{{ section.settings.title_alignment }} {% unless section.settings.show_title %}visually-hidden{% endunless %}">{{ page.title }}</h1>
+
+    <div class="rte rte--expanded-images clearfix row">
+      {{ page.content }}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Page",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_title",
+        "label": "Show page title",
+        "default": true
+      },
+      {
+        "type": "select",
+        "id": "title_alignment",
+        "label": "Title alignment",
+        "default": "left",
+        "options": [
+          { "value": "left", "label": "Left" },
+          { "value": "center", "label": "Center" },
+          { "value": "right", "label": "Right" }
+        ]
+      }
+    ]
+  }
+{% endschema %}

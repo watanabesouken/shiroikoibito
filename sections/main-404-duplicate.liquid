@@ -1,0 +1,92 @@
+   <script type="text/javascript" src="{{ 'script.js' | asset_url }}"></script>
+  
+   <section class="p-policy p-termofuse">
+     <div class="p-policy__inner">
+       
+       <nav class="breadcrumbs" aria-label="Breadcrumbs">
+  <ol class="breadcrumbs-list">
+    <li class="breadcrumbs-list__item">
+      <a class="breadcrumbs-list__link" href="/">TOP</a> <span class="icon"><svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+  <title>Right</title>
+  <path fill="currentColor" d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z"></path>
+</svg></span>
+    </li><li class="breadcrumbs-list__item">
+        <a class="breadcrumbs-list__link" href="/blogs/news" aria-current="page">404</a>
+      </li></ol></nav>
+       
+       <div class="p-policy__top p-errow__top">
+           {% render 'breadcrumbs-custom' %}
+         <div class="p-terms-of-use__bg ">
+           {{ 'p-terms-of-use-bg.png' | file_img_url : 'master' | img_tag: 'p-terms-of-use-bg'}}
+          </div>
+             <div class="p-project__cow p-errow-cow">
+             {{ 'project-cow.png' | file_img_url : 'master' | img_tag: 'project-cow', 'fallin' , 'fallin-delay1'}}           
+          </div>
+          <div class="p-project__flower1 p-errow-flower1">
+             {{ 'project-flower1.png' | file_img_url : 'master' | img_tag: 'project-flower1'  , 'sway' }}      
+          </div>
+          <div class="p-project__flower2 p-errow-flower2">
+             {{ 'project-flower2.png' | file_img_url : 'master' | img_tag: 'project-flower2' , 'sway'  }}      
+          </div>
+          <div class="p-project__fruit p-errow-fruit">
+             {{ 'project-fruit.png' | file_img_url : 'master' | img_tag: 'project-fruit' , 'sway' }}
+          </div>
+
+          <div class="p-feature__top p-terms-of-use__title">
+            <p class="p-project__ttl p-feature__ttl c-ttl p-terms-of-use__ttl p-error__ttl">404</p>
+            {{ 'p-terms-of-use-underline.png' | file_img_url : 'master' | img_tag: 'p-terms-of-use-underline.png' }}
+          </div>
+       </div>
+       
+           <div class="p-policy__wrapper">
+                 <div class="p-policy__content p-404__content">
+                  <p class="p-404__title">404<span class="p-404__not">Not</span><span class="p-404__found">Found</span></p>
+                  <p class="p-404__answer">お探しのページは見つかりませんでした。</p>
+                  <p class="p-404__text">
+                    あなたがアクセスしようとしたページは<br class="p-farm-spOnly">削除されたかURL変更されている為、<br>
+                    見つけることができません
+                  </p>
+                  <div class="p-404__btn--wrapper">
+                    <a href="{{ routes.root_url }}" class="p-404__btn">
+                      <span>トップページへ</span>
+                    </a>
+                  </div>
+                </div>
+         </div>
+   
+     </div>
+   </section>
+           
+
+
+{% schema %}
+  {
+    "name": "Policy-terms-of-use",
+    "settings": [
+		{
+          "type": "text",
+          "id": "title",
+          "label": "PROJECT タイトル"
+		},{
+		  "type": "text",
+          "id": "project",
+          "label": "PROJECT 説明文"
+      	},{
+		"type": "blog",
+          "id": "project_list",
+		  "label": "表示するブログ記事を選択"
+		}
+	],
+	"presets": [
+      {
+        "name": "Policy-terms-of-use"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

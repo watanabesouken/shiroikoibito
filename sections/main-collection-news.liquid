@@ -1,0 +1,187 @@
+
+     <section class="p-feature p-collection-feature">
+         
+         <div class="p-feature__inner p-news-collection">
+             {% render 'breadcrumbs-custom', show_next_prev: true %}
+          
+          <div class="p-feature__bg p-news-collection__bg">
+            {{ 'article-news_bg.png' | file_img_url : 'master' | img_tag: 'p-feature-collection__bg.png'}}     
+          </div>
+          <div class="p-news-collection__student1">
+            {{ 'kv-student1.png' | file_img_url : 'master' | img_tag: 'student1', 'fallin'}}
+          </div>
+          <div class="p-news-collection__student3">
+            {{ 'kv-student3.png' | file_img_url : 'master' | img_tag: 'student3', 'fallin'}}
+          </div>
+          <div class="p-news-collection__human2">
+            {{ 'kv-human2.png' | file_img_url : 'master' | img_tag: 'human2', 'fallin'}}
+          </div>
+          <div class="p-news-collection__human3">
+            {{ 'kv-human3.png' | file_img_url : 'master' | img_tag: 'human3', 'fallin'}}
+          </div>
+          <div class="p-news-collection__human4">
+            {{ 'kv-human4.png' | file_img_url : 'master' | img_tag: 'human4', 'fallin'}}
+          </div>
+          <div class="p-feature__mistletoe  p-news-collection__mistletoe">
+            {{ 'news-mistletoe_blog.png' | file_img_url : 'master' | img_tag: 'news-mistletoe_blog', 'sway'}}
+          </div>
+          <div class="p-feature__top">
+            <p class="p-feature__ttl c-ttl">お知らせ</p>
+            {{ 'feature-underline.png' | file_img_url : 'master' | img_tag: 'feature-underline.png' }}
+          </div>
+           
+     
+              
+          <div class="p-feature__btm">
+             <ul class="blog-tags news-blog-tags">
+              {%- for tag in blog.all_tags -%}
+                {%  assign blogcount  = blogcount  | plus : 1 %}
+                {%- if current_tags contains tag -%}
+               <li style="background:{% if blogcount == 1 %}#1d1c1d{% elsif blogcount == 2 %}#bfd571{% elsif blogcount == 3 %}#f8c6bd{% elsif blogcount == 4 %}#a2d7d4{% endif %};" class="overlay-tag overlay-tag-current">
+                 <span>
+                    {% if blogcount == 1 %} <a href="/blogs/news/tagged/%E3%81%99%E3%81%B9%E3%81%A6" title="Show products matching tag すべて">すべて</a>
+                    {% elsif blogcount == 2 %}<a href="/blogs/news/tagged/%E3%81%8A%E7%9F%A5%E3%82%89%E3%81%9B" title="Show products matching tag お知らせ">お知らせ</a>
+                    {% elsif blogcount == 3 %}<a href="/blogs/news/tagged/%E5%95%86%E5%93%81" title="Show products matching tag 商品">商品</a>
+                    {% elsif blogcount == 4 %}<a href="/blogs/news/tagged/%E3%81%9D%E3%81%AE%E4%BB%96" title="Show products matching tag その他">その他</a>{% endif %}
+                 </span></li>
+                   
+                {%- else -%}
+                  <li style="background:{% if blogcount == 1 %}#1d1c1d{% elsif blogcount == 2 %}#bfd571{% elsif blogcount == 3 %}#f8c6bd{% elsif blogcount == 4 %}#a2d7d4{% endif %};" class="overlay-tag {% if alpha == 0 %}overlay-tag--inherit-color{% endif %}">
+  
+                 
+                     {% if blogcount == 1 %} <a href="/blogs/news/tagged/%E3%81%99%E3%81%B9%E3%81%A6" title="Show products matching tag すべて">すべて</a>
+                    {% elsif blogcount == 2 %}<a href="/blogs/news/tagged/%E3%81%8A%E7%9F%A5%E3%82%89%E3%81%9B" title="Show products matching tag お知らせ">お知らせ</a>
+                    {% elsif blogcount == 3 %}<a href="/blogs/news/tagged/%E5%95%86%E5%93%81" title="Show products matching tag 商品">商品</a>
+                    {% elsif blogcount == 4 %}<a href="/blogs/news/tagged/%E3%81%9D%E3%81%AE%E4%BB%96" title="Show products matching tag その他">その他</a>{% endif %}
+                 </li>
+                {%- endif -%}
+               
+              {%- endfor -%}
+            </ul>
+            <ul class="p-feature__lists p-feature__blog--lists p-news-collection__lists">
+              
+              {%- paginate blog.articles by 12 -%}
+               {% for article in blog.articles %}
+              
+                  <li class="p-feature__list p-feature-collection__list">
+                    {% if article.metafields.custom._nolink != true %}<a href="{{ article.url }}">{% endif %}
+                      {% if article.image != blank %}
+                           <img src="{{ article.image.src | image_url: width:500 }}" alt="">
+                            {% else %}
+                           <img src="{{ 'noimage.png' | file_url }}" alt="">
+                            {% endif %}
+                    <div class="p-feature__variety p-feature-collection__variety">
+                      <p class="p-feature__tag">
+                        {% for tag in article.tags %}
+                        {% if tag == '商品' %}
+						    商品
+                         {% elsif tag == 'お知らせ' %}
+						    お知らせ
+                        {% elsif tag == 'その他' %}
+						    その他
+                        {% endif %}
+						{% endfor %}
+                        
+                      </p>
+                      <span>|</span>
+                      <p class="p-feature__date">{{ article.created_at | date: "%y. %m. %d " }}</p>
+                    </div>
+                    <p class="p-feature-colleciton__description p-feature__description c-description">{{ article.title }}</p>
+                     {% if article.metafields.custom._nolink != true %}</a>{% endif %}
+                  </li>
+              {% endfor %}
+         </ul>
+              {%- if paginate.pages > 1 -%}
+                  <nav role="navigation">
+                    <ol class="pagination p-collection-pagination p-news-collection-pagination">
+                      {%- if paginate.previous-%}
+                        <li class="pagination-list pagination-list-arrow">
+                          <a href="{{ paginate.previous.url }}">
+                            <span aria-hidden="true">
+                                {{ 'pagenation-arrow-before.png' | file_img_url : 'master' | img_tag: 'pagenation-arrow-before.png'}}      
+                            </span>
+                          </a>
+                        </li>
+                      {%- else -%}
+                        <li class="pagination-list  pagination-list-arrow disabled">
+                          <span aria-hidden="true">
+                                {{ 'pagenation-arrow-before.png' | file_img_url : 'master' | img_tag: 'pagenation-arrow-before.png'}}      
+                          </span>
+                        </li>
+                      {%- endif -%}
+
+                      {%- for part in paginate.parts -%}
+                        {%- if part.is_link -%}
+                          <li class="pagination-list-number pagination-list">
+                            <a href="{{ part.url }}">
+                           {{ part.title }}
+                            </a>
+                          </li>
+                        {%- else -%}
+                          {%- if part.title == paginate.current_page -%}
+                            <li class="pagination-list-number active pagination-list" aria-current="page">
+                             {{ part.title }}
+                            </li>
+                          {%- else -%}
+                            <li class="pagination-list-number pagination-list">
+                              {{ part.title }}
+                            </li>
+                          {%- endif -%}
+                        {%- endif -%}
+                      {%- endfor -%}
+
+                      {%- if paginate.next -%}
+                        <li class="pagination-list pagination-list-arrow">
+                          <a href="{{ paginate.next.url }}">
+                            <span aria-hidden="true">
+                                 {{ 'pagination-right-arrow.png' | file_img_url : 'master' | img_tag: 'pagination-right-arrow.png'}}     
+                            </span>
+                          </a>
+                        </li>
+                      {%- else -%}
+                        <li class="pagination-list pagination-list-arrow disabled">
+                          <span aria-hidden="true">
+                               {{ 'pagination-right-arrow.png' | file_img_url : 'master' | img_tag: 'pagination-right-arrow.png'}}     
+                          </span>
+                        </li>
+                      {%- endif -%}
+                    </ol>
+                  </nav>
+                {%- endif -%}
+       {%- endpaginate -%}
+              
+           
+ 
+          </div>
+           
+           
+         </div>
+       </section>
+
+{% schema %}
+  {
+    "name": "main-news-collection",
+    "settings": [
+		{
+          "type": "text",
+          "id": "feature",
+          "label": "特集 説明文"
+      	},{
+		  "type": "blog",
+          "id": "project_list",
+		  "label": "表示するブログ記事を選択"
+		}
+	],
+	"presets": [
+      {
+        "name": "main-news-collection"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

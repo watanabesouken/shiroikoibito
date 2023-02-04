@@ -1,0 +1,192 @@
+<style>
+  main{
+  	padding-top:7.2rem;
+  }
+  @media screen and (max-width:1024px){
+    main{padding-top:0;}
+  }
+</style>
+
+<section class="p-kv">
+  <div class="p-kv__text">
+    {% if section.settings.title != blank %}
+    <h2 class="p-kv__title fadeY">{{ section.settings.title }}</h2>
+    {% endif %}
+    {% if section.settings.subtitle != blank %}
+    <p class="p-kv__subtitle fade">{{ section.settings.subtitle }}</p>
+    {% endif %}
+  </div>
+  <div class="kv-image-wrap">
+  {{ 'kv-bg.png' | file_img_url : 'master' | img_tag: 'kv-bg' , 'p-kv__bg' }}
+  {{ 'kv-tree2.png' | file_img_url : 'master' | img_tag: 'kv-tree2' , 'p-kv__tree2--right move__tree3 sway' }}
+  {{ 'kv-tree2.png' | file_img_url : 'master' | img_tag: 'kv-tree2' , 'p-kv__tree2 move__tree2 sway' }}
+  {{ 'kv-tree3.png' | file_img_url : 'master' | img_tag: 'kv-tree3' , 'p-kv__tree3 move__tree3 sway' }}
+  {{ 'kv-tree4.png' | file_img_url : 'master' | img_tag: 'kv-tree4' , 'p-kv__tree4 move__tree4 sway' }}
+  {{ 'kv-human1.png' | file_img_url : 'master' | img_tag: 'kv-human1' , 'p-kv__human1 fallin fallin-delay4' }}
+  {{ 'kv-human2.png' | file_img_url : 'master' | img_tag: 'kv-human2' , 'p-kv__human2 fallin fallin-delay1' }}
+  {{ 'kv-human3.png' | file_img_url : 'master' | img_tag: 'kv-human3' , 'p-kv__human3 fallin fallin-delay2' }}
+  {{ 'kv-human4.png' | file_img_url : 'master' | img_tag: 'kv-human4' , 'p-kv__human4 fallin fallin-delay3' }}
+  {{ 'kv-mistletoe.png' | file_img_url : 'master' | img_tag: 'kv-mistletoe' , 'p-kv__mistletoebig sway' }}
+  {{ 'kv-student1.png' | file_img_url : 'master' | img_tag: 'kv-student1' , 'p-kv__student1 fallin fallin-delay4' }}
+  {{ 'kv-student2.png' | file_img_url : 'master' | img_tag: 'kv-student2' , 'p-kv__student2 fallin fallin-delay5' }}
+  {{ 'kv-student3.png' | file_img_url : 'master' | img_tag: 'kv-student3' , 'p-kv__student3 fallin fallin-delay6' }}
+  {{ 'kv-bird1.png' | file_img_url : 'master' | img_tag: 'kv-bird1' , 'p-kv__bird1 sway' }}
+  {{ 'kv-bird2.png' | file_img_url : 'master' | img_tag: 'kv-bird2' , 'p-kv__bird2 sway' }}
+  {{ 'kv-broccoli.png' | file_img_url : 'master' | img_tag: 'broccoli' , 'p-kv__broccoli  fallin fallin-delay3' }}
+  {{ 'kv-carrots.png' | file_img_url : 'master' | img_tag: 'carrots' , 'p-kv__carrots fallin fallin-delay4' }}
+  {{ 'kv-cow.png' | file_img_url : 'master' | img_tag: 'cow' , 'p-kv__cow fallin fallin-delay2' }}
+  {{ 'kv-flower1.png' | file_img_url : 'master' | img_tag: 'flower' , 'p-kv__flower1 sway' }}
+  {{ 'kv-flower2.png' | file_img_url : 'master' | img_tag: 'flower' , 'p-kv__flower2 sway' }}
+  {{ 'kv-onion.png' | file_img_url : 'master' | img_tag: 'onion' , 'p-kv__onion fallin fallin-delay1' }}  
+  {{ 'kv-mistletoe1.png' | file_img_url : 'master' | img_tag: 'mistletoe1' , 'p-kv__mistletoe1 sway' }}  
+  {{ 'kv-mistletoe2.png' | file_img_url : 'master' | img_tag: 'mistletoe1' , 'p-kv__mistletoe2 sway move__tree2' }}  
+  {{ 'kv-mistletoe3.png' | file_img_url : 'master' | img_tag: 'mistletoe1' , 'p-kv__mistletoe3 sway' }}  
+  {{ 'kv-mistletoe2.png' | file_img_url : 'master' | img_tag: 'mistletoe1' , 'p-kv__mistletoe4 sway move__tree3' }}  
+  {{ 'kv-mistletoe2.png' | file_img_url : 'master' | img_tag: 'mistletoe1' , 'p-kv__mistletoe5 sway' }}
+  {{ 'kv-mistletoe2.png' | file_img_url : 'master' | img_tag: 'mistletoe1' , 'p-kv__mistletoe6 sp-block sway' }}
+  {{ 'kv-mistletoe2.png' | file_img_url : 'master' | img_tag: 'mistletoe1' , 'p-kv__mistletoe7 sp-block sway' }}    
+  </div>
+</section>
+<section class="p-farm">
+  <div class="p-farm__inner fade-after-p">
+
+    <div class="p-farm__bg">
+        {{ 'farm-bg.png' | file_img_url : 'master' | img_tag: 'farm-bg' ,'farm-pc-block'  }}
+        {{ 'top-farm-sp.png' | file_img_url : 'master' | img_tag: 'farm-bg','sp-block' }}
+    </div>
+
+    <div class="p-farm__deer1">
+        {{ 'farm-deer1.png' | file_img_url : 'master' | img_tag: 'farm-deer1' , 'sway-after' }} 
+    </div>
+    <div class="p-farm__deer2">
+        {{ 'farm-deer2.png' | file_img_url : 'master' | img_tag: 'farm-deer2', 'sway-after' }}        
+    </div>
+
+    <div class="p-farm__tree1">
+        {{ 'farm-tree1.png' | file_img_url : 'master' | img_tag: 'farm-tree1' , 'sway-after' }}        
+    </div>
+    <div class="p-farm__tree2">
+        {{ 'farm-tree2.png' | file_img_url : 'master' | img_tag: 'farm-tree2' , 'sway-after' }}        
+    </div>
+    <div class="p-farm__tree3">
+        {{ 'farm-tree3.png' | file_img_url : 'master' | img_tag: 'farm-tree3' , 'sway-after' }}        
+    </div>
+
+    <div class="p-farm__tree--right1">
+        {{ 'farm-tree1.png' | file_img_url : 'master' | img_tag: 'farm-tree1' , 'sway-after' }}        
+    </div>
+
+    <div class="p-farm__tree--right2">
+        {{ 'farm-tree2.png' | file_img_url : 'master' | img_tag: 'farm-tree2' , 'sway-after' }}        
+    </div>
+
+    <div class="p-farm__mistletoe">
+        {{ 'farm-mistletoe.png' | file_img_url : 'master' | img_tag: 'farm-mistletoe' , 'sway-after' }}        
+    </div>
+
+    <div class="p-farm__mistletoe2">
+        {{ 'farm-mistletoe2.png' | file_img_url : 'master' | img_tag: 'farm-mistletoe2' , 'sway-after' }}        
+    </div>
+
+    <div class="p-farm__mistletoe3">
+        {{ 'farm-mistletoe3.png' | file_img_url : 'master' | img_tag: 'farm-mistletoe3', 'sway-after'  }}        
+    </div>
+
+    <div class="p-farm__mistletoe4">
+        {{ 'farm-mistletoesmall1.png' | file_img_url : 'master' | img_tag: 'farm-mistletoesmall1' , 'sway-after' }}        
+    </div>
+
+    <div class="p-farm__mistletoe5">
+        {{ 'farm-mistletoesmall1.png' | file_img_url : 'master' | img_tag: 'mistletoesmall1', 'sway-after'  }}        
+    </div>
+
+    <div class="p-farm__student1">
+        {{ 'farm-student1.png' | file_img_url : 'master' | img_tag: 'farm-student1' , 'fallin-after' }}        
+    </div>
+    <div class="p-farm__student2">
+        {{ 'farm-student2.png' | file_img_url : 'master' | img_tag: 'farm-student2' , 'fallin-after' }}        
+    </div>
+    <div class="p-farm__student3">
+        {{ 'farm-student3.png' | file_img_url : 'master' | img_tag: 'farm-student3', 'fallin-after'  }}        
+    </div>
+    <div class="p-farm__student4">
+        {{ 'farm-student4.png' | file_img_url : 'master' | img_tag: 'farm-student4' , 'fallin-after' }}        
+    </div>
+
+    <div class="p-farm__carrots">
+        {{ 'farm-carrots.png' | file_img_url : 'master' | img_tag: 'farm-carrots', 'fallin-after'  }}        
+    </div>
+
+    <div class="p-farm__koibito">
+        {{ 'farm-koibito.png' | file_img_url : 'master' | img_tag: 'farm-koibito', 'fallin-after'  }}        
+    </div>
+
+    <div class="p-farm__top fade-after-c">
+      {% if section.settings.title2 != blank %}
+    <p class="p-farm__name c-ttl">{{ section.settings.title2 }}</p>
+    {% endif %}
+        {{ 'farm-underline.png' | file_img_url : 'master' | img_tag: 'farm-underline'  }}
+    </div>
+    {% if section.settings.subtitle2 != blank %}
+    <div class="p-farm__ttl c-tt fade-after-c">
+      {{ section.settings.subtitle2 }}
+    </div>
+    {% endif %}
+    <div class="p-farm__mdl fade-after-c">
+       <div class="p-farm__movie">
+              <iframe width="349" height="232" src="https://www.youtube.com/embed/SXf2z2H24Wc?autoplay=1&mute=1&playlist=SXf2z2H24Wc&loop=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+              </iframe>
+         </div>
+      <p class="p-farm__description c-description">
+        {% if section.settings.text != blank %}
+        {{ section.settings.text }}
+        {% endif %}
+      </p>
+    </div>
+    <div class="p-farm__btn fade-after-c">
+      <a href="/pages/about-hokkaido-farm-story" class="c-btn">
+        <span>詳細を見る</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+{% schema %}
+  {
+    "name": "TOP-FV",
+    "settings": [
+		{
+          "type": "text",
+          "id": "title",
+          "label": "FV タイトル"
+      	},
+		{
+          "type": "text",
+          "id": "subtitle",
+          "label": "FV サブタイトル"
+      	},
+		{
+          "type": "text",
+          "id": "title2",
+          "label": "FV2 タイトル"
+      	},
+		{
+          "type": "text",
+          "id": "subtitle2",
+          "label": "FV2 サブタイトル"
+      	},
+		{
+          "type": "textarea",
+          "id": "text",
+          "label": "FV2 説明文"
+      	}
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,78 @@
+
+<script type="text/javascript" src="{{ 'script.js' | asset_url }}"></script>
+{%- assign blog = blogs[section.settings.project_list] -%}
+<section class="p-project story-project">         
+  <div class="p-project__inner">
+    <div class="p-project__bg">
+     {{ 'project-bg.png' | file_img_url : 'master' | img_tag: 'project-bg','sp-none' }}
+     {{ 's-project-bg-sp.png' | file_img_url : 'master' | img_tag: 'project-bg', 'sp-block' }}
+    </div>
+    <div class="p-project__human1">
+       {{ 'project-human1.png' | file_img_url : 'master' | img_tag: 'project-human1' , 'fallin-after' }}      
+    </div>
+    <div class="p-project__human2">
+       {{ 'project-human2.png' | file_img_url : 'master' | img_tag: 'project-human2' , 'fallin-after' }}      
+    </div>
+    <div class="p-project__mistletoe">
+       {{ 'topics-mistletoe.png' | file_img_url : 'master' | img_tag: 'topics-mistletoe' , 'sway-s-after' }}      
+    </div>
+    <div class="p-project__main">
+      <div class="p-project__main-left fadeY-after">
+        <div class="p-project__top">
+          <p class="p-project__ttl c-ttl en">PROJECT</p>
+       {{ 'project-underline.png' | file_img_url : 'master' | img_tag: 'project-underline' }}          
+        </div>
+        <div class="p-project__mdl">
+          {% if section.settings.title != blank %}
+          <h3>{{ section.settings.title }}</h3>
+          {% endif %}
+          {% if section.settings.project != blank %}
+          <p class="p-project__description c-description">{{ section.settings.project }}</p>
+          {% endif %}
+        </div>
+      </div>
+      <div class="p-project__main-right fade-after">
+        <ul class="p-project__lists">
+          {% for article in blog.articles limit: 8 %}
+          {%  assign blogcount  = blogcount  | plus : 1 %}
+          <li class="p-project__list" style="background:{% if blogcount == 1 or blogcount == 5 %}#F2D300{% elsif blogcount == 2 or blogcount == 6 %}#93D2D5{% elsif blogcount == 3 or blogcount == 7 %}#F9D0C6{% endif %};">
+            {% if article.metafields.custom._nolink != true %}<a href="{{ article.url }}">{% endif %}
+              <span class="list-num">0{{ blogcount }}</span>
+		       {{ 'list-num-deco.png' | file_img_url : 'master' | img_tag: 'project-underline' ,'list-num-deco' }}
+              {% if artickle.image != blank %}
+              <img class="project-img" src="{{ article.image.src | image_url: width:500 }}" alt="">
+              {% else %}
+              <img class="project-img" src="{{ 'noimage.png' | file_url }}" alt="noimage">
+              {% endif %}
+              <div class="p-project__title">
+                <p>{{ article.title }}</p>
+              </div>
+              <p class="p-feature__description c-description">{{ article.excerpt }}</p>
+            {% if article.metafields.custom._nolink != true %}</a>{% endif %}
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{% schema %}
+  {
+    "name": "project",
+    "settings": [
+		{
+		"type": "blog",
+          "id": "project_list",
+		  "label": "表示するブログ記事を選択"
+		}
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,17 @@
+{%- capture qty_values -%}1,2,3,4,5,6,7,8,9,10+{%- endcapture -%}
+{%- assign option_values = qty_values | split: ',' -%}
+{%- assign label = 'products.product.quantity' | t -%}
+
+<div class="qty-wrapper{% unless variant.available %} is-disabled{% endunless %}">
+  {% render 'custom-select',
+    id: 'qty-proxy',
+    option_values: option_values,
+    label: label,
+    label_inside: true,
+    selected_value: '1'
+  %}
+  <div class="qty-actual">
+    <label class="qty-actual__label" for="Quantity">{{ label }}</label>
+    <input class="qty-actual__input" type="number" id="Quantity" name="quantity" value="1">
+  </div>
+</div>

@@ -1,0 +1,588 @@
+
+
+  .p-farm-spOnly{
+    display:none;
+  }
+
+ .p-farm-pcOnly{
+    display:block;
+  }
+
+.p-farm-spirit img{
+  max-width: unset;
+}
+.p-farm-concept img{
+  max-width: unset;
+}
+
+.p-farm-spirit__mission {
+    position: relative;
+}
+.p-farm-spirit__list2 {
+    flex-direction: row-reverse;
+}
+.p-farm-spirit__inner {
+  overflow-x: clip;
+  position: relative;
+}
+.p-farm-pcbg2 {
+  width: 1567.6144px;
+  left: calc(50% - 900px);
+  position: absolute;
+  top: -4rem;
+}
+.p-farm-pcbg3 {
+  width: 1375.0845px;
+  position: absolute;
+  left: calc(50% - 650px);
+  top: -5rem;
+}
+
+.p-farm-spirit__left {
+  width: 50%;
+}
+.p-farm-spirit__right {
+  position: relative;
+  width: 50%;
+   padding-top: 10rem;
+}
+.p-farm-spirit__top {
+  text-align: center;
+  padding-bottom: 10.9rem;
+}
+.p-farm-spirit__list {
+  display: flex;
+  margin: auto;
+  max-width: 1280px;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 31rem;
+}
+.p-farm-mission-mistletoe1 {
+  width: 147.2693px;
+}
+.p-farm-spirit__right--wrapper {
+  border-bottom: 4px solid #d7df5c;
+  padding-bottom: 2rem;
+  display: flex;
+  align-items: baseline;
+  padding-left: 4rem;
+}
+.p-farm-mission__compliment {
+    padding-left: 4rem;
+    padding: 3.5rem 0 2.6rem 4rem;
+    line-height: 2;
+}
+.p-farm-mission__description {
+  padding-left: 4rem;
+  padding-right: 6rem;
+}
+.p-farm-mission-human1 {
+  width: 131.9653px;
+  position: absolute;
+  z-index: 2;
+ left: calc(50% - 504px);
+    top: 38rem;
+}
+.p-farm-mission-mistletoe2 {
+  width: 101.5658px;
+  position: absolute;
+  z-index: 2;
+   left: calc(50% - 380px);
+    top: 37rem;
+}
+.p-farm-mission-human2 {
+  width: 399.9793px;
+  position: absolute;
+  z-index: 2;
+     left: calc(50% - 430px);
+    top: 37rem;
+}
+
+.p-farm-spirit__list--title {
+  font-size: 5rem;
+  
+  letter-spacing: 0.1em;
+}
+
+.p-farm-spirit__list--title {
+  font-size: 5rem;
+  letter-spacing: 0.1em;
+  font-family: ainslie-sans, sans-serif;
+      font-weight: 700;
+}
+
+.p-farm-spirit__list--text {
+  font-size: 1.9rem;
+  letter-spacing: 0.12em;
+  padding-left: 1rem;
+  font-weight: 700;
+}
+
+.p-farm-mission-image1 {
+  width: 660px;
+  position: absolute;
+  left: -2rem;
+}
+.p-farm-spirit__vision {
+  padding: 40rem 0;
+}
+
+//farm-vision//
+.p-farm-spirit__list2 {
+  flex-direction: row-reverse;
+}
+.p-farm-vision-mistletoe {
+  width: 119.0084px;
+  position: absolute;
+  z-index:2;
+  right: calc(50% - 51rem);
+    bottom: -6rem;
+}
+.p-farm-vision-human {
+  position: absolute;
+  width: 285.5338px;
+  right: calc(50% - 700px);
+  z-index:2;
+  bottom: -25rem;
+}
+.p-farm-vision__compliment {
+  padding: 2.5rem 0 2rem 7rem;
+}
+.p-farm-vision__description {
+  padding-left: 7rem;
+  padding-right: 4rem;
+}
+
+.p-farm-vision-image2 {
+  right: -2rem;
+  position: absolute;
+  width: 660px;
+}
+
+.p-farm-pcbg4 {
+  position: absolute;
+  width: 1390.8304px;
+    top: -3.5rem;
+    left: calc(50% - 724px);
+    height: 610px;
+}
+.p-farm-value__right--wrapper {
+  border-bottom: 4px solid #ffe450;
+}
+.p-farm-value-human {
+    width: 333px;
+    position: absolute;
+    z-index: 2;
+    left: calc(50% - 555px);
+    bottom: -12rem;
+}
+.p-farm-value-mistletoe {
+  width: 117.6458px;
+  position: absolute;
+  z-index: 2;
+    left: calc(50% - 380px);
+    bottom: 7rem;
+}
+.p-farm-value-image {
+  width: 660px;
+  position: absolute;
+  left: -2rem;  
+}
+.p-farm-spirit__left--wrapper {
+  border-bottom: 4px solid #f8c6bd;
+  padding-left: 7rem;
+}
+
+@media screen and (max-width: 1279px) {
+  .p-farm-pcbg4 {
+    width: 108.659vw;
+    top: -2.734vw;
+    left: calc(50% - 56.563vw);
+    height: 47.656vw;
+}
+  .p-farm-pcbg3 {
+    width: 107.512vw;
+    position: absolute;
+    left: calc(50% - 63.909vw);
+    top: -3.909vw;
+}
+  .p-farm-spirit__right--wrapper {
+    padding-bottom: 1.564vw;
+    padding-left: 3.127vw;
+}
+  .p-farm-mission-mistletoe2 {
+    width: 7.941vw;
+    position: absolute;
+    z-index: 2;
+    left: calc(50% - 29.711vw);
+    top: 28.929vw;
+}
+  .p-farm-mission-human2 {
+    width: 31.248vw;
+    position: absolute;
+    z-index: 2;
+    left: calc(50% - 33.594vw);
+    top: 28.906vw;
+}
+  .p-farm-mission-human1 {
+    width: 10.318vw;
+    position: absolute;
+    z-index: 2;
+    left: calc(50% - 39.406vw);
+    top: 29.711vw;
+}
+  .p-farm-pcbg2 {
+    width: 131.47vw;
+    left: calc(50% - 70.313vw);
+    position: absolute;
+    top: -3.125vw;
+}
+  
+  .pcOnly {
+    display: none;
+}
+  .p-farm-spirit__list {
+    display: flex;
+    margin: auto;
+    max-width: 100vw;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 24.219vw;
+}
+    .p-farm-mission-image1 {
+    width: 51.5625vw;
+    position: absolute;
+    left: -1.5625vw;
+}
+  .p-farm-vision-image2{
+    width: 51.5625vw;
+    position: absolute;
+    right: -1.5625vw;
+}
+  .p-farm-spirit__right {
+    position: relative;
+    width: 51.5625vw;
+    padding-top: 7.8125vw;
+}
+  .p-farm-spirit__left {
+      width: 51.5625vw;
+  }
+  .p-farm-value-image {
+     width: 51.5625vw;
+    position: absolute;
+    left: -1.5625vw;
+  }
+  .p-farm-value-human {
+    width: 26.015625vw;
+    left: calc(50% - 43.359375vw);
+    bottom: -9.375vw;
+}
+  .p-farm-value-mistletoe {
+    width: 9.19017812vw;
+    bottom: 5.46875vw;
+    z-index: 2;
+    left: calc(50% - 29.6875vw);
+}
+  .p-farm-mission__compliment {
+    padding-left: 3.125vw;
+    padding: 2.734vw 0 2.031vw 3.125vw;
+    line-height: 2;
+}
+  .p-farm-spirit__right--wrapper {
+    padding-left: 3.125vw;
+}
+    .p-farm-spirit__left--wrapper {
+    padding-left: 5.469vw;
+  }
+  .c-farm-description {
+    font-size: 1.6rem;
+    line-height: 2.0625;
+    letter-spacing: .05em;
+}
+   .p-farm-vision__compliment {
+    padding: 1.953vw 3.125vw 1.563vw 5.469vw;
+     
+}
+  .p-farm-vision__description {
+    padding-left: 5.469vw;
+    padding-right: 3.125vw;
+}
+  .p-farm-mission__description {
+    padding-left: 3.125vw;
+    padding-right: 4.688vw;
+}
+  .p-farm-vision-human {
+    position: absolute;
+    width: 22.307vw;
+    right: calc(50% - 54.688vw);
+    z-index: 2;
+    bottom: -19.531vw;
+}
+  .p-farm-vision-mistletoe {
+    width: 9.298vw;
+    position: absolute;
+    z-index: 2;
+    right: calc(50% - 39.844vw);
+    bottom: -4.687vw;
+}
+  
+}
+  
+@media screen and (max-width: 1023px) {
+.p-farm-mission__compliment {
+    font-size: 1.4rem;
+}
+  .p-farm-spirit__list--title {
+    font-size: 4.5rem;
+    letter-spacing: .1em;
+    font-weight: 700;
+}
+  .p-farm-spirit__list--text {
+    font-size: 1.7rem;
+    letter-spacing: .12em;
+    font-weight: 700;
+    padding-left:0rem;
+}
+  .p-farm-mission__description {
+    padding-left: 2vw;
+    padding-right: 2vw;
+    font-size: 1.2rem;
+    line-height: 1.785;
+}
+  .p-farm-mission__compliment {
+    padding-left: 3.125vw;
+    padding: 1.953vw 2vw 1.563vw;
+    line-height: 1.6;
+    letter-spacing: 0.00175em;
+}
+  .p-farm-spirit__right--wrapper {
+    flex-direction: column;
+}
+  .p-farm-spirit__right--wrapper {
+    padding-left: 2vw;
+}
+  .p-farm-vision__compliment {
+    padding: 1.953vw 2vw 1.563vw 2vw;
+    line-height: 2;
+    font-size: 1.4rem;
+}
+  
+   .p-farm-vision__description {
+    padding-left: 2vw;
+    padding-right: 2vw;
+    font-size: 1.2rem;
+    line-height: 1.785;
+}
+  .p-farm-pcbg3 {
+    width: 124.512vw;
+}
+  .p-farm-value-human {
+    width: 26.015625vw;
+    left: calc(50% - 43.359375vw);
+    bottom: -11.375vw;
+}
+    .p-farm-pcbg4 {
+    width: 108.659vw;
+    top: -2.734vw;
+    left: calc(50% - 52.563vw);
+    height: 51.656vw;
+}
+  .p-farm-kv__title--en {
+    color: #2f553b;
+    font-family: futura-pt,sans-serif;
+    font-size: 4.3rem;
+    letter-spacing: .085em;
+    font-weight: 700;
+    line-height: 1.56393443;
+}
+  
+}
+
+@media screen and (max-width: 649px) {
+    .c-compliment {
+    font-size: 1.7rem;
+    line-height: 1.75;
+    padding: 0;
+}
+  .p-farm-spirit__list {
+    display: flex;
+    margin: auto;
+    justify-content:unset;
+    position: relative;
+      margin-bottom: 112.219vw;
+    flex-direction: column-reverse;
+}
+  
+  .p-farm-mission-image1 {
+    width: 101.33vw;
+    left: -8vw;
+}
+    .p-farm-vision-image2 {
+    width: 101.33vw;
+    left: -8vw;
+}
+  .p-farm-value-image {
+    width: 101.33vw;
+    left: -8vw;
+}
+  .p-farm-spirit__right {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    padding: 0 5.333333vw;
+    padding-top: 3vw;
+}
+  .p-farm-spirit__right--wrapper {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+  .p-farm-spirit__right--wrapper {
+    padding-left: 0;
+    padding-bottom: 5vw;
+  }
+  
+.p-farm-spbg3 {
+    position: absolute;
+    width: 1262.757px;
+left: calc(50% - 156vw);
+}
+  
+  .p-farm-spOnly{
+    display:block;
+  }
+   .p-farm-pcOnly{
+    display:none;
+  }
+  
+  
+   .p-farm-mission__compliment {
+    padding-left: 3.125vw;
+    padding: 3vw 0vw 0vw;
+    line-height: 2;
+    letter-spacing: .12em;
+}
+  .p-farm-mission__description {
+    padding-left: 0;
+    padding-right: 0;
+    font-size: 1.4rem;
+    line-height: 1.85;
+    padding-bottom: 5vw;
+}
+    .p-farm-vision__compliment {
+    padding-left: 3.125vw;
+    padding: 3vw 0vw 0vw;
+    line-height: 2;
+    letter-spacing: .12em;
+}
+  .p-farm-vision__description {
+    padding-left: 0;
+    padding-right: 0;
+    font-size: 1.4rem;
+    line-height: 1.85;
+    padding-bottom: 5vw;
+}
+  p-farm-vision__description.c-farm-description {
+    padding-bottom: 3vw;
+}
+  
+  .p-farm-spbg4.p-farm-spOnly {
+    width: 1248.449px;
+    position: absolute;
+    left: calc(50% - 75vw);
+}
+  .p-farm-vision__right {
+    padding-top: 21vw;
+}
+  .p-farm-mission__compliment {
+    padding: 3vw 0vw 3vw;
+    letter-spacing: 0.07em;
+    font-size:1.6rem;
+}
+  .p-farm-vision__compliment {
+    padding-left: 3.125vw;
+    padding: 3vw 0vw;
+    line-height: 2;
+    letter-spacing: .12em;
+    font-size: 1.6rem;
+}
+  .p-farm-spbg2.p-farm-spOnly {
+    width: 1423.2483px;
+    position: absolute;
+    left: calc(50% - 136vw);
+    top: calc(50% - 66vw);
+}
+  .p-farm-spirit__right--wrapper {
+    border-bottom: 2.72px solid #d7df5c;
+}
+  .p-farm-value__right--wrapper {
+  border-bottom: 2.72px solid #ffe450;
+}
+  .p-farm-spirit__left--wrapper {
+  border-bottom: 2.72px solid #f8c6bd;
+}
+.p-farm-mission-human2 {
+    width: 72.96vw;
+    left: calc(50% - 33.594vw);
+    top: 140.906vw;
+}
+  .p-farm-mission-mistletoe2 {
+    width: 15.6vw;
+    left: calc(50% - 20.711vw);
+    top: 142.929vw;
+}
+  .p-farm-mission-human1 {
+    width: 20.27vw;
+    left: calc(50% - 43.406vw);
+    top: 151vw;
+}
+  .p-farm-vision-human {
+    width: 43.858vw;
+    right: calc(50% - 49.688vw);
+    bottom: -100.531vw;
+}
+  .p-farm-vision-mistletoe {
+    width: 18.28vw;
+    right: calc(50% - 17.844vw);
+    bottom: -71.687vw;
+}
+  .p-farm-value-mistletoe {
+    width: 18.07vw;
+     bottom: -63.53125vw;
+    left: calc(50% - 14vw);
+}
+  
+  .p-farm-mission-mistletoe1 {
+    width: 105px;
+  }
+  
+  .p-farm-spirit__top {
+    padding-bottom: 3.5rem;
+  }
+  .p-farm-value-human {
+    width: 49.233vw;
+     left: calc(50% - 40.359375vw);
+    bottom: -90.375vw;
+}
+.p-farm-spirit__mission {
+    position: relative;
+    overflow: hidden;
+}
+  .p-farm-spbg2.p-farm-spOnly {
+    width: 1423.2483px;
+    position: absolute;
+    left: calc(50% - 136vw);
+    top: calc(50% - 120vw);
+}
+  
+
+.p-farm-kv__title--en {
+    color: #2f553b;
+    font-family: futura-pt,sans-serif;
+    font-size: 4.3rem;
+    letter-spacing: .085em;
+    font-weight: 700;
+    line-height: 1.2;
+}
+}
